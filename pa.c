@@ -11,4 +11,5 @@ void	pa(int *stack_a, int *stack_b, int *stack_a_size, int *stack_b_size)
 		*stack_a_size += 1;
 		*stack_b_size -= 1;
 	}
+	write(1, "pa\n", 3);
 }

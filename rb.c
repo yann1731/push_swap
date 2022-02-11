@@ -8,4 +8,5 @@ void	rb(int *stack_b, int *stack_b_size)
 	temp = *stack_b;
 	shiftstackup(stack_b, stack_b_size);
 	*(stack_b + *stack_b_size) = temp;
+	write(1, "rb\n", 3);
 }
