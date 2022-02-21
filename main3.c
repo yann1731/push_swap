@@ -323,78 +323,35 @@ void bubble_sort(int *sorted_stack, int stack_size)
 	}
 }
 
-// Create a temporary stack say tmpStack.
-// While input stack is NOT empty do this:
-// Pop an element from input stack call it temp
-// while temporary stack is NOT empty and top of temporary stack is greater than temp,
-// pop from temporary stack and push it to the input stack
-// push temp in temporary stack
-// The sorted numbers are in tmpStack
-
-// First loop attempt: (is_sorted(stack_a, stack_a_size) == 0 || stack_b_size != 0)
-// Sequence used: 4 6 1 3 7 5 15 11 13
-// while (is_sorted(stack_a, stack_a_size) == 0)
-// 	{
-// 		while (stack_a_size > 0)
-// 		{
-// 			if (stack_a[0] > stack_a[1] && stack_a_size >= 2)
-// 				sa(stack_a, stack_a_size);
-// 			pb(stack_a, stack_b, &stack_a_size, &stack_b_size);
-// 			if (stack_b[0] < stack_b[1] && stack_b_size >= 2)
-// 				sb(stack_b, stack_b_size);
-// 		}
-// 		while (stack_b_size > 0)
-// 		{
-// 			if (stack_b[0] < stack_b[1] && stack_b_size >= 2)
-// 				sb(stack_b, stack_b_size);
-// 			pa(stack_a, stack_b, &stack_a_size, &stack_b_size);
-// 			if (stack_a[0] > stack_a[1] && stack_b_size >= 2)
-// 				sa(stack_a, stack_a_size);
-// 		}
-// 	}
-
-// int	half;
-// 	int i;
-
-// 	bubble_sort(sorted_stack, stack_a_size);
-// 	i = 0;
-// 	while (stack_a_size > 0)
-// 	{
-// 		half = stack_a_size / 2;
-// 		if (findindex(stack_a, sorted_stack[i], stack_a_size) <= half)
-// 		{
-// 			while (stack_a[0] != sorted_stack[i])
-// 				ra(stack_a, stack_a_size);
-// 			pb(stack_a, stack_b, &stack_a_size, &stack_b_size);
-// 			i++;
-// 		}
-// 		if (findindex(stack_a, sorted_stack[i], stack_a_size) > half)
-// 		{
-// 			while (stack_a[0] != sorted_stack[i])
-// 				rra(stack_a, stack_a_size);
-// 			pb(stack_a, stack_b, &stack_a_size, &stack_b_size);
-// 			i++;
-// 		}
-// 	}
-// 	while (stack_b_size > 0)
-// 		pa(stack_a, stack_b, &stack_a_size, &stack_b_size);
-
-// while (i < max)
-// 	{
-// 		if (stack_a[0] == sorted_stack[i])
-// 		{
-// 			pb(stack_a, stack_b, &stack_a_size, &stack_b_size);
-// 			i++;
-// 		}
-// 		ra(stack_a, stack_a_size);
-// 	}
-// 	while (stack_b_size > 0)
-// 		pa(stack_a, stack_b, &stack_a_size, &stack_b_size);
+void	small_sort_five(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
+{
+	
+}
 
 void	small_sort(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
 {
-	if (stack_a[0] > stack_a[1] && stack_a[1] )
-	
+	if (stack_a_size == 2)
+		if (stack_a[0] > stack_a[1])
+			sa(stack_a, stack_a_size);
+	if (stack_a_size == 3)
+	{
+		if (stack_a[0] > stack_a[1] && stack_a[2] > stack_a[1])
+			sa(stack_a, stack_a_size);
+		if (is_rsorted(stack_a, stack_a_size) == 1)
+		{
+			sa(stack_a, stack_a_size);
+			rra(stack_a, stack_a_size);
+		}
+		if (stack_a[0] > stack_a[1] && stack_a[0] > stack_a[2])
+			ra(stack_a, stack_a_size);
+		if (stack_a[0] < stack_a[1] && stack_a[1] > stack_a[2])
+		{
+			sa(stack_a, stack_a_size);
+			ra(stack_a, stack_a_size);
+		}
+		if (stack_a[0] < stack_a[1] && stack_a[0] > stack_a[2])
+			rra(stack_a, stack_a_size);
+	}
 }
 
 int	findindex(int *stack_a, int tofind, int stack_a_size)
@@ -410,9 +367,13 @@ int	findindex(int *stack_a, int tofind, int stack_a_size)
 
 void	sorting(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
 {
+	int i;
+
+	i = -1;
 	if (stack_a_size <= 3)
 		small_sort(stack_a, stack_b, stack_a_size, stack_b_size);
-	
+	while (++i < stack_a_size)
+		printf("%d\n", stack_a[i]);
 }
 
 void	push_swap(int *stack_a, int *stack_b, int argc)
