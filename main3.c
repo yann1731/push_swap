@@ -323,11 +323,6 @@ void bubble_sort(int *sorted_stack, int stack_size)
 	}
 }
 
-void	small_sort_five(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
-{
-	
-}
-
 void	small_sort(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
 {
 	if (stack_a_size == 2)
@@ -354,6 +349,30 @@ void	small_sort(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
 	}
 }
 
+//a: 4 1 3 2 5
+//a: 3 2 5 b: 1 4
+//a: 2 3 5 b: 1 4
+//a: 1 2 3 5 b: 4
+//a: 5 1 2 3 b: 4
+//a: 4 5 1 2 3
+//a ra ra
+void	small_sort_five(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
+{
+	int count;
+
+	count = stack_a;
+	if (stack_a_size == 5)
+		pb(stack_a, stack_b, &stack_a_size, &stack_b_size);
+	pb(stack_a, stack_b, &stack_a_size, &stack_b_size);
+	small_sort(stack_a, stack_b, stack_a_size, stack_b_size);
+	if (count == 5)
+		while (is_sorted(stack_a, stack_a_size) == 0)
+		{
+			if (stack_b[0] < stack_a[0])
+				pa(stack_a, stack_b, &stack_a_size, &stack_b_size);
+		}
+}
+
 int	findindex(int *stack_a, int tofind, int stack_a_size)
 {
 	int	i;
@@ -372,6 +391,8 @@ void	sorting(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
 	i = -1;
 	if (stack_a_size <= 3)
 		small_sort(stack_a, stack_b, stack_a_size, stack_b_size);
+	if (stack_a_size == 4 || stack_a_size == 5)
+		small_sort_five(stack_a, stack_b, stack_a_size, stack_b_size);
 	while (++i < stack_a_size)
 		printf("%d\n", stack_a[i]);
 }
