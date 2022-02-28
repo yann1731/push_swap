@@ -304,19 +304,19 @@ void swap(int *a, int *b)
 	*b = tmp;
 }
 
-void bubble_sort(int *sorted_stack, int stack_size)
+void bubble_sort(int *to_sort, int stack_size)
 {
 	int	i;
 	int j;
 
 	i = 0;
 	j = 0;
-	while (is_sorted(sorted_stack, stack_size) == 0)
+	while (is_sorted(to_sort, stack_size) == 0)
 	{
 		while (j < (stack_size - 1))
 		{
-			if (sorted_stack[j] > sorted_stack[j + 1])
-				swap(&sorted_stack[j], &sorted_stack[j + 1]);
+			if (to_sort[j] > to_sort[j + 1])
+				swap(&to_sort[j], &to_sort[j + 1]);
 		j++;
 		}
 	j = 0;
@@ -349,14 +349,6 @@ void	small_sort(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
 	}
 }
 
-//a: 4 1 3 2 5
-//a: 3 2 5 b: 1 4
-//a: 2 3 5 b: 1 4
-//a: 1 2 3 5 b: 4
-//a: 5 1 2 3 b: 4
-//a: 4 5 1 2 3
-//a: ra ra
-
 int	find_max(int *stack_a, int stack_a_size)
 {
 	int res;
@@ -365,6 +357,30 @@ int	find_max(int *stack_a, int stack_a_size)
 	while (--stack_a_size >= 0)
 		if (stack_a[stack_a_size] > res)
 			res = stack_a[stack_a_size];
+	return (res);
+}
+
+void	stack_copy(int *to_copy, int *copy_to, int to_copy_size)
+{
+	while (--to_copy_size >= 0)
+		copy_to[to_copy_size] = to_copy[to_copy_size];
+}
+
+int	find_secondtolast(int *stack_a, int stack_a_size)
+{
+	int res;
+	int *tempstack;
+
+	tempstack = malloc(stack_a_size * sizeof(int));
+	if (tempstack == NULL)
+	{
+		write(2, "Error\n", 6);
+		exit(0);
+	}
+	stack_copy(stack_a, tempstack, stack_a_size);
+	bubble_sort(tempstack, stack_a_size);
+	res = tempstack[stack_a_size - 2];
+	free(tempstack);
 	return (res);
 }
 
