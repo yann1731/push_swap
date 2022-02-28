@@ -355,22 +355,54 @@ void	small_sort(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
 //a: 1 2 3 5 b: 4
 //a: 5 1 2 3 b: 4
 //a: 4 5 1 2 3
-//a ra ra
+//a: ra ra
+
+int	find_max(int *stack_a, int stack_a_size)
+{
+	int res;
+
+	res = 0;
+	while (--stack_a_size >= 0)
+		if (stack_a[stack_a_size] > res)
+			res = stack_a[stack_a_size];
+	return (res);
+}
+
+int	find_min(int *stack_a, int stack_a_size)
+{
+	int res;
+
+	res = stack_a[stack_a_size - 1];
+	while (--stack_a_size >= 0)
+		if (stack_a[stack_a_size] < res)
+			res = stack_a[stack_a_size];
+	return (res);
+}
+
 void	small_sort_five(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
 {
-	int count;
+	int max;
 
-	count = stack_a;
+	max = find_max(stack_a, stack_a_size);
 	if (stack_a_size == 5)
 		pb(stack_a, stack_b, &stack_a_size, &stack_b_size);
 	pb(stack_a, stack_b, &stack_a_size, &stack_b_size);
 	small_sort(stack_a, stack_b, stack_a_size, stack_b_size);
-	if (count == 5)
-		while (is_sorted(stack_a, stack_a_size) == 0)
+	while (is_sorted(stack_a, stack_a_size) == 0 || stack_b_size != 0)
+	{
+		if (stack_b[0] < stack_a[0])
+			pa(stack_a, stack_b, &stack_a_size, &stack_b_size);
+		if (stack_b[0] > stack_a[0] && stack_b[0] != max)
 		{
-			if (stack_b[0] < stack_a[0])
-				pa(stack_a, stack_b, &stack_a_size, &stack_b_size);
+			while (stack_b[0] > stack_a[0])
+				rra(stack_a, stack_a_size);
+			pa(stack_a, stack_b, &stack_a_size, &stack_b_size);
 		}
+		if (stack_b[0] == max)
+
+		while (is_sorted(stack_a, stack_a_size) != 1)
+			ra(stack_a, stack_a_size);
+	}
 }
 
 int	findindex(int *stack_a, int tofind, int stack_a_size)
@@ -386,15 +418,10 @@ int	findindex(int *stack_a, int tofind, int stack_a_size)
 
 void	sorting(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
 {
-	int i;
-
-	i = -1;
 	if (stack_a_size <= 3)
 		small_sort(stack_a, stack_b, stack_a_size, stack_b_size);
 	if (stack_a_size == 4 || stack_a_size == 5)
 		small_sort_five(stack_a, stack_b, stack_a_size, stack_b_size);
-	while (++i < stack_a_size)
-		printf("%d\n", stack_a[i]);
 }
 
 void	push_swap(int *stack_a, int *stack_b, int argc)
