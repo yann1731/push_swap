@@ -323,30 +323,31 @@ void bubble_sort(int *to_sort, int stack_size)
 	}
 }
 
-void	small_sort(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
+void	small_sort_two(int *stack_a, int stack_a_size)
 {
 	if (stack_a_size == 2)
 		if (stack_a[0] > stack_a[1])
 			sa(stack_a, stack_a_size);
-	if (stack_a_size == 3)
+}
+
+void	small_sort(int *stack_a, int stack_a_size)
+{
+	if (stack_a[0] > stack_a[1] && stack_a[1] < stack_a[2] && stack_a[0] < stack_a[2])
+		sa(stack_a, stack_a_size);
+	if (is_rsorted(stack_a, stack_a_size) == 1)
 	{
-		if (stack_a[0] > stack_a[1] && stack_a[2] > stack_a[1])
-			sa(stack_a, stack_a_size);
-		if (is_rsorted(stack_a, stack_a_size) == 1)
-		{
-			sa(stack_a, stack_a_size);
-			rra(stack_a, stack_a_size);
-		}
-		if (stack_a[0] > stack_a[1] && stack_a[0] > stack_a[2])
-			ra(stack_a, stack_a_size);
-		if (stack_a[0] < stack_a[1] && stack_a[1] > stack_a[2])
-		{
-			sa(stack_a, stack_a_size);
-			ra(stack_a, stack_a_size);
-		}
-		if (stack_a[0] < stack_a[1] && stack_a[0] > stack_a[2])
-			rra(stack_a, stack_a_size);
+		sa(stack_a, stack_a_size);
+		rra(stack_a, stack_a_size);
 	}
+	if (stack_a[0] > stack_a[1] && stack_a[1] < stack_a[2] && stack_a[0] > stack_a[2])
+		ra(stack_a, stack_a_size);
+	if (stack_a[0] < stack_a[1] && stack_a[1] > stack_a[2] && stack_a[0] < stack_a[2])
+	{
+		sa(stack_a, stack_a_size);
+		ra(stack_a, stack_a_size);
+	}
+	if (stack_a[0] < stack_a[1] && stack_a[1] > stack_a[2] && stack_a[0] > stack_a[2])
+		rra(stack_a, stack_a_size);
 }
 
 int	find_max(int *stack_a, int stack_a_size)
@@ -394,30 +395,44 @@ int	find_min(int *stack_a, int stack_a_size)
 			res = stack_a[stack_a_size];
 	return (res);
 }
+// 1
+// 2
+// 3
+// 5
+// 4
+
+// 3	2
+// 5	1
+// 4
+
+// 3	2
+// 4	1
+// 5
+
+
 
 void	small_sort_five(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
 {
 	int max;
+	int	sec_to_last;
 
 	max = find_max(stack_a, stack_a_size);
+	sec_to_last = find_secondtolast(stack_a, stack_a_size);
 	if (stack_a_size == 5)
 		pb(stack_a, stack_b, &stack_a_size, &stack_b_size);
 	pb(stack_a, stack_b, &stack_a_size, &stack_b_size);
-	small_sort(stack_a, stack_b, stack_a_size, stack_b_size);
+	small_sort(stack_a, stack_a_size);
 	while (is_sorted(stack_a, stack_a_size) == 0 || stack_b_size != 0)
 	{
-		if (stack_b[0] < stack_a[0])
-			pa(stack_a, stack_b, &stack_a_size, &stack_b_size);
-		if (stack_b[0] > stack_a[0] && stack_b[0] != max)
+		if (stack_b[0] < stack_a[0] && stack_b[0] > stack_a[stack_a_size - 1] && stack_b[0] != max && stack_b_size > 0)
+			while (stack_b[0] < stack_a[0] && stack_b[0] > stack_a[stack_a_size - 1] && stack_b_size > 0)
+				pa(stack_a, stack_b, &stack_a_size, &stack_b_size);
+		if (stack_b[0] == max && stack_a[0] == sec_to_last)
 		{
-			while (stack_b[0] > stack_a[0])
-				rra(stack_a, stack_a_size);
 			pa(stack_a, stack_b, &stack_a_size, &stack_b_size);
+			sa(stack_a, stack_a_size);
 		}
-		if (stack_b[0] == max)
-
-		while (is_sorted(stack_a, stack_a_size) != 1)
-			ra(stack_a, stack_a_size);
+		ra(stack_a, stack_a_size);
 	}
 }
 
@@ -434,8 +449,10 @@ int	findindex(int *stack_a, int tofind, int stack_a_size)
 
 void	sorting(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
 {
-	if (stack_a_size <= 3)
-		small_sort(stack_a, stack_b, stack_a_size, stack_b_size);
+	if (stack_a_size == 2)
+		small_sort_two(stack_a, stack_a_size);
+	if (stack_a_size == 3)
+		small_sort(stack_a, stack_a_size);
 	if (stack_a_size == 4 || stack_a_size == 5)
 		small_sort_five(stack_a, stack_b, stack_a_size, stack_b_size);
 }
