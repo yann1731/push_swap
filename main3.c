@@ -435,12 +435,12 @@ void	insert_mid(int *stack_a, int *stack_b,	int *stack_a_size, int *stack_b_size
 	else
 	{
 		ra(stack_a, *stack_a_size);
-		pa(stack_a, stack_b, *stack_a_size, *stack_b_size);
+		pa(stack_a, stack_b, stack_a_size, stack_b_size);
 		rra(stack_a, *stack_a_size);
 	}
 }
 
-void	insert_sec_to_last(int *stack_a, int *stack_b, int *stack_a_size, int *stack_b_size)
+void	insert_sec_to_last(int *stack_a, int *stack_b, int *stack_a_size, int *stack_b_size, int *tempstack)
 {
 	rra(stack_a, *stack_a_size);
 	pa(stack_a, stack_b, stack_a_size, stack_b_size);
@@ -476,7 +476,7 @@ void	small_sort_five(int *stack_a, int *stack_b, int stack_a_size, int stack_b_s
 		if (stack_b[0] > min && stack_b[0] < mid)
 			insert_second(stack_a, stack_b, &stack_a_size, &stack_b_size, tempstack);
 		if (stack_b[0] == mid)
-			insert_mid(stack_a, stack_b, &stack_a_size, &stack_b_size, min);
+			insert_mid(stack_a, stack_b, &stack_a_size, &stack_b_size, tempstack);
 		if (stack_b[0] > mid && stack_b[0] < max)
 			insert_sec_to_last(stack_a, stack_b, &stack_a_size, &stack_b_size);
 		if (stack_b[0] == max)
