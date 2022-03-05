@@ -401,6 +401,13 @@ void	insert_max(int *stack_a, int *stack_b, int *stack_a_size, int *stack_b_size
 	pa(stack_a, stack_b, stack_a_size, stack_b_size);
 	ra(stack_a, *stack_a_size);
 }
+// pop top element of stack_a to stack_b
+// compare top element of stack_a to stack_b
+// if top element of stack_a < than top element of stack_b
+// move top element of stack_b to stack_a and top element of stack_a to stack_b
+// if top element of stack_a > top element of stack_b
+// move top element of stack_a to stack_b
+// once stack_a is empty and stack_b is sorted in reverse order, return everything to stack_a
 
 void	large_sort(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
 {
