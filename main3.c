@@ -1,4 +1,3 @@
-#include "libft.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -351,85 +350,26 @@ void	small_sort(int *stack_a, int stack_a_size)
 		rra(stack_a, stack_a_size);
 }
 
-int	find_max(int *stack_a, int stack_a_size)
-{
-	int res;
-
-	res = 0;
-	while (--stack_a_size >= 0)
-		if (stack_a[stack_a_size] > res)
-			res = stack_a[stack_a_size];
-	return (res);
-}
-
 void	stack_copy(int *to_copy, int *copy_to, int to_copy_size)
 {
 	while (--to_copy_size >= 0)
 		copy_to[to_copy_size] = to_copy[to_copy_size];
 }
 
-int	find_secondtolast(int *stack_a, int stack_a_size)
-{
-	int res;
-	int *tempstack;
-
-	tempstack = malloc(stack_a_size * sizeof(int));
-	if (tempstack == NULL)
-	{
-		write(2, "Error\n", 6);
-		exit(0);
-	}
-	stack_copy(stack_a, tempstack, stack_a_size);
-	bubble_sort(tempstack, stack_a_size);
-	res = tempstack[stack_a_size - 2];
-	free(tempstack);
-	return (res);
-}
-
-int	find_mid(int *stack_a, int stack_a_size)
-{
-	int res;
-	int *tempstack;
-
-	tempstack = malloc(stack_a_size * sizeof(int));
-	if (tempstack == NULL)
-	{
-		write(2, "Error\n", 6);
-		exit(0);
-	}
-	stack_copy(stack_a, tempstack, stack_a_size);
-	bubble_sort(tempstack, stack_a_size);
-	res = tempstack[2];
-	free(tempstack);
-	return (res);
-}
-
-int	find_min(int *stack_a, int stack_a_size)
-{
-	int res;
-
-	res = stack_a[stack_a_size - 1];
-	while (--stack_a_size >= 0)
-		if (stack_a[stack_a_size] < res)
-			res = stack_a[stack_a_size];
-	return (res);
-}
-
 void	insert_second(int *stack_a, int *stack_b, int *stack_a_size, int *stack_b_size, int *tempstack)
 {
 		pa(stack_a, stack_b, stack_a_size, stack_b_size);
-		if (stack_a[1] == tempstack[1])
+		if (stack_a[1] == tempstack[0])
 			sa(stack_a, *stack_a_size);
 }
 
 void	insert_mid(int *stack_a, int *stack_b,	int *stack_a_size, int *stack_b_size, int *tempstack)
 {
-	bubble_sort(tempstack, 5);
 	if (stack_a[0] == tempstack[0] && stack_a[1] == tempstack[1])
 	{
 		ra(stack_a, *stack_a_size);
-		sa(stack_a, *stack_a_size);
 		pa(stack_a, stack_b, stack_a_size, stack_b_size);
+		sa(stack_a, *stack_a_size);
 		rra(stack_a, *stack_a_size);
 	}
 	else
@@ -442,10 +382,18 @@ void	insert_mid(int *stack_a, int *stack_b,	int *stack_a_size, int *stack_b_size
 
 void	insert_sec_to_last(int *stack_a, int *stack_b, int *stack_a_size, int *stack_b_size, int *tempstack)
 {
-	rra(stack_a, *stack_a_size);
-	pa(stack_a, stack_b, stack_a_size, stack_b_size);
-	ra(stack_a, *stack_a_size);
-	ra(stack_a, *stack_a_size);
+	if (stack_a[*(stack_a_size) - 1] == tempstack[4])
+	{
+		rra(stack_a, *stack_a_size);
+		pa(stack_a, stack_b, stack_a_size, stack_b_size);
+		ra(stack_a, *stack_a_size);
+		ra(stack_a, *stack_a_size);
+	}
+	else
+	{
+		pa(stack_a, stack_b, stack_a_size, stack_b_size);
+		ra(stack_a, *stack_a_size);
+	}
 }
 
 void	insert_max(int *stack_a, int *stack_b, int *stack_a_size, int *stack_b_size)
@@ -454,33 +402,62 @@ void	insert_max(int *stack_a, int *stack_b, int *stack_a_size, int *stack_b_size
 	ra(stack_a, *stack_a_size);
 }
 
+void	large_sort(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
+{
+	while (is_sorted(stack_a, stack_a_size) == 0 || stack_b_size != 0)
+	{
+		
+	}
+}
+
 void	small_sort_five(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
 {
-	int	min;
-	int	mid;
-	int max;
 	int	*tempstack;
 
+	tempstack = malloc(stack_a_size * sizeof(int));
 	stack_copy(stack_a, tempstack, stack_a_size);
-	min = find_min(stack_a, stack_a_size);
-	mid = find_mid(stack_a, stack_a_size);
-	max = find_max(stack_a, stack_a_size);
-	if (stack_a_size == 5)
-		pb(stack_a, stack_b, &stack_a_size, &stack_b_size);
+	bubble_sort(tempstack, stack_a_size);
+	pb(stack_a, stack_b, &stack_a_size, &stack_b_size);
 	pb(stack_a, stack_b, &stack_a_size, &stack_b_size);
 	small_sort(stack_a, stack_a_size);
 	while (is_sorted(stack_a, stack_a_size) == 0 || stack_b_size != 0)
 	{
-		if (stack_b[0] == min)
+		if (stack_b[0] == tempstack[0])
 			pa(stack_a, stack_b, &stack_a_size, &stack_b_size);
-		if (stack_b[0] > min && stack_b[0] < mid)
+		if (stack_b[0] == tempstack[1])
 			insert_second(stack_a, stack_b, &stack_a_size, &stack_b_size, tempstack);
-		if (stack_b[0] == mid)
+		if (stack_b[0] == tempstack[2])
 			insert_mid(stack_a, stack_b, &stack_a_size, &stack_b_size, tempstack);
-		if (stack_b[0] > mid && stack_b[0] < max)
-			insert_sec_to_last(stack_a, stack_b, &stack_a_size, &stack_b_size);
-		if (stack_b[0] == max)
+		if (stack_b[0] == tempstack[3])
+			insert_sec_to_last(stack_a, stack_b, &stack_a_size, &stack_b_size, tempstack);
+		if (stack_b[0] == tempstack[4])
 			insert_max(stack_a, stack_b, &stack_a_size, &stack_b_size);
+	}
+}
+
+void	small_sort_four(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
+{
+	pb(stack_a, stack_b, &stack_a_size, &stack_b_size);
+	small_sort(stack_a, stack_a_size);
+	if (stack_b[0] < stack_a[0])
+		pa(stack_a, stack_b, &stack_a_size, &stack_b_size);
+	if (stack_b[0] > stack_a[2])
+	{
+		pa(stack_a, stack_b, &stack_a_size, &stack_b_size);
+		ra(stack_a, stack_a_size);
+	}
+	if ((stack_b[0] > stack_a[0] && stack_b[0] < stack_a[1])
+		|| (stack_b[0] > stack_a[0] && stack_b[0] < stack_a[1]))
+	{
+		pa(stack_a, stack_b, &stack_a_size, &stack_b_size);
+		sa(stack_a, stack_a_size);
+	}
+	if (stack_b[0] > stack_a[1] && stack_b[0] < stack_a[2])
+	{
+		rra(stack_a, stack_a_size);
+		pa(stack_a, stack_b, &stack_a_size, &stack_b_size);
+		ra(stack_a, stack_a_size);
+		ra(stack_a, stack_a_size);
 	}
 }
 
@@ -501,8 +478,16 @@ void	sorting(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
 		small_sort_two(stack_a, stack_a_size);
 	if (stack_a_size == 3)
 		small_sort(stack_a, stack_a_size);
-	if (stack_a_size == 4 || stack_a_size == 5)
+	if (stack_a_size == 4)
+		small_sort_four(stack_a, stack_b, stack_a_size, stack_b_size);
+	if (stack_a_size == 5)
 		small_sort_five(stack_a, stack_b, stack_a_size, stack_b_size);
+	if (stack_a_size > 5)
+
+	int i;
+	i = -1;
+	while (++i < 5)
+		printf("%d\n", stack_a[i]);
 }
 
 void	push_swap(int *stack_a, int *stack_b, int argc)
