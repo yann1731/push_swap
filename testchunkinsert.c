@@ -1,6 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include "push_swap.h"
 #include "libft.h"
 
 void	shiftstackdown(int *stack, int stacksize)
@@ -141,60 +139,7 @@ void	ss(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
 	sa(stack_a, stack_a_size);
 	sb(stack_b, stack_b_size);
 	write(1, "ss\n", 3);
-}
-
-int	memsizebin(unsigned long long n)
-{
-	long long	i;
-
-	i = 0;
-	if (n == 0)
-		return (1);
-	while (n != 0)
-	{
-		i++;
-		n /= 2;
-	}
-	return (i);
-}
-
-static char	*posnumbin(unsigned long long n, char *str)
-{
-	size_t		max;
-	const char	*base;
-
-	base = "01";
-	max = memsizebin(n);
-	str[max] = '\0';
-	while (max > 0)
-	{
-		str[max - 1] = base[n % 2];
-		n = n / 2;
-		max--;
-	}
-	return (str);
-}
-
-char	*ft_itoa_bin(unsigned long long n)
-{
-	char	*str;
-	size_t	max;
-
-	max = memsizebin(n);
-	if (n == 0)
-	{
-		str = malloc(2 * sizeof(char));
-		str[0] = '0';
-		str[1] = '\0';
-		return (str);
-	}
-	str = malloc((max + 1) * sizeof(char));
-	if (str == NULL)
-		return (NULL);
-	else
-		str = posnumbin(n, str);
-	return (str);
-}
+}   
 
 int	is_sorted(int *stack_a, int stack_a_size)
 {
@@ -538,7 +483,7 @@ void	sorting(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
 	if (stack_a_size == 4)
 		small_sort_four(stack_a, stack_b, stack_a_size, stack_b_size);
 	if (stack_a_size == 5)
-		large_sort(stack_a, stack_b, stack_a_size, stack_b_size);
+		small_sort_five(stack_a, stack_b, stack_a_size, stack_b_size);
 	if (stack_a_size > 5)
 		large_sort(stack_a, stack_b, stack_a_size, stack_b_size);
 	int i;
