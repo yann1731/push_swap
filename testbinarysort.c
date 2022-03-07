@@ -3,6 +3,35 @@
 #include <unistd.h>
 #include "libft.h"
 
+int	maxbinwidth(int nb)
+{
+	int	i;
+
+	i = 0;
+	while (nb != 0)
+	{
+		nb /= 2;
+		i++;
+	}
+	return (i);
+}
+
+char	**mallocbinstack(int stack_a_size)
+{
+	char	**binstack;
+	int		maxwidth;
+	int		i;
+
+	i = -1;
+	maxwidth = maxbinwidth(stack_a_size);
+	binstack = malloc(stack_a_size * sizeof(char *));
+	binstack[stack_a_size] = NULL;
+	while (++i < stack_a_size)
+		binstack[i] = malloc((maxwidth + 1) * sizeof(char));
+	i = -1;
+	return (binstack);
+}
+
 int	findindex(int *stack_a, int tofind, int stack_a_size)
 {
 	int	i;
@@ -49,25 +78,31 @@ void	ft_strcpy(char *dst, const char *src)
 	i = -1;
 	while (src[++i])
 		dst[i] = src[i];
-	return (src);
 }
 
-void	binshiftup(char **binstack, int stacksize, int maxwidth)
+void	binshiftup(char **binstack, int stacksize)
 {
 	int stop;
 	int index;
+	int	maxwidth;
+	int	i;
 
 	stop = stacksize;
 	index = 0;
-
-	while (index < stop)
+	maxwidth = -1;
+	i = -1;
+	while (binstack[0][maxwidth])
+		maxwidth++;
+	while (index < (stop - 1))
 	{
-		ft_strlcpy(binstack[index], binstack[index + 1], maxwidth);
+		ft_strcpy(binstack[index], binstack[index + 1]);
 		index++;
 	}
+	while (binstack[index][++i])
+		binstack[index][i] = '\0';
 }
 
-void	binshiftdown(char **binstack, int stacksize, int maxwidth)
+void	binshiftdown(char **binstack, int stacksize)
 {
 	int index;
 
@@ -75,31 +110,31 @@ void	binshiftdown(char **binstack, int stacksize, int maxwidth)
 
 	while (index > 0)
 	{
-		ft_strlcpy(binstack[index], binstack[index - 1], maxwidth);
+		ft_strcpy(binstack[index], binstack[index - 1]);
 		index--;
 	}
 }
 
-void	pabin(char **binstack_a, char **binstack_b, int *stack_a_size, int *stack_b_size, int maxwidth)
+void	pabin(char **binstack_a, char **binstack_b, int *stack_a_size, int *stack_b_size)
 {
 	if (*stack_b_size != 0)
 	{
-		binshiftdown(binstack_a, *stack_a_size, maxwidth);
-		binstack_a[0] = ft_strdup(binstack_b[0]);
-		binshiftup(binstack_b, *stack_b_size, maxwidth);
+		binshiftdown(binstack_a, *stack_a_size);
+		ft_strcpy(binstack_a[0], binstack_b[0]);
+		binshiftup(binstack_b, *stack_b_size);
 		*stack_a_size += 1;
 		*stack_b_size -= 1;
 		write(1, "pa\n", 3);
 	}
 }
 
-void	pbbin(char **binstack_a, char **binstack_b, int *stack_a_size, int *stack_b_size, int maxwidth)
+void	pbbin(char **binstack_a, char **binstack_b, int *stack_a_size, int *stack_b_size)
 {
 	if (*stack_a_size != 0)
 	{
-		binshiftdown(binstack_b, *stack_b_size, maxwidth);
-		binstack_b[0] = ft_strdup(binstack_a[0]);
-		binshiftup(binstack_a, *stack_a_size, maxwidth);
+		binshiftdown(binstack_b, *stack_b_size);
+		ft_strcpy(binstack_b[0], binstack_a[0]);
+		binshiftup(binstack_a, *stack_a_size);
 		*stack_b_size += 1;
 		*stack_a_size -= 1;
 		write(1, "pb\n", 3);
@@ -218,19 +253,6 @@ void	ss(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
 	write(1, "ss\n", 3);
 }
 
-int	maxbinwidth(int nb)
-{
-	int	i;
-
-	i = 0;
-	while (nb != 0)
-	{
-		nb /= 2;
-		i++;
-	}
-	return (i);
-}
-
 int	memsizebin(unsigned long long n)
 {
 	long long	i;
@@ -248,11 +270,9 @@ int	memsizebin(unsigned long long n)
 
 static char	*posnumbin(unsigned long long n, char *str, int maxwidth)
 {
-	size_t		max;
 	const char	*base;
 
 	base = "01";
-	max = memsizebin(n);
 	str[maxwidth] = '\0';
 	while (maxwidth > 0)
 	{
@@ -575,12 +595,12 @@ void	large_sort(int *stack_a, int stack_a_size, int stack_b_size)
 {
 	char	**binstack_a;
 	char	**binstack_b;
+	int		maxwidth;
 
+	maxwidth = maxbinwidth(stack_a_size);
 	binstack_a = strstack(stack_a, stack_a_size);
-	binstack_b = malloc((stack_a_size + 1) * sizeof(char *));
-	binstack_b[0] = NULL;
-	pbbin(binstack_a, binstack_b, &stack_a_size, &stack_b_size);
-	printf("%s\n", binstack_b[0]);
+	binstack_b = mallocbinstack(stack_a_size);
+	
 }
 
 void	small_sort_five(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
