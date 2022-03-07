@@ -25,10 +25,11 @@ char	**mallocbinstack(int stack_a_size)
 	i = -1;
 	maxwidth = maxbinwidth(stack_a_size);
 	binstack = malloc(stack_a_size * sizeof(char *));
-	binstack[stack_a_size] = NULL;
 	while (++i < stack_a_size)
+	{
 		binstack[i] = malloc((maxwidth + 1) * sizeof(char));
-	i = -1;
+		ft_memset((void *) binstack[i], 0, maxwidth + 1);
+	}
 	return (binstack);
 }
 
@@ -590,7 +591,6 @@ char	**strstack(int *stack_a, int stack_a_size)
 	binstack = malloc(stack_a_size * sizeof(char *));
 	stack_copy(stack_a, tempstack, stack_a_size);
 	bubble_sort(tempstack, stack_a_size);
-	binstack[stack_a_size] = NULL;
 	i = 0;
 	while (i < stack_a_size)
 	{
@@ -620,16 +620,15 @@ void	large_sorting(char **binstack_a, char **binstack_b, int stack_a_size, int s
 		while (binstack_a[0][bit - 1] == '0')
 		{
 			pbbin(binstack_a, binstack_b, &stack_a_size, &stack_b_size);
-			counter++;
-			if (counter == stop)
+			if (++counter == stop)
 			{
 				bit--;
 				stackrewind(binstack_a, binstack_b, &stack_a_size, &stack_b_size, &counter);
 			}
 		}
-		counter++;
-		rabin(binstack_a, stack_a_size);
-		if (counter == stop)
+		if (bit > 0)
+			rabin(binstack_a, stack_a_size);
+		if (++counter == stop)
 		{
 			bit--;
 			stackrewind(binstack_a, binstack_b, &stack_a_size, &stack_b_size, &counter);
@@ -637,7 +636,7 @@ void	large_sorting(char **binstack_a, char **binstack_b, int stack_a_size, int s
 	}
 }
 
-void	large_sort(int *stack_a, int stack_a_size, int stack_b_size, int bit)
+void	large_sort(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size, int bit)
 {
 	char	**binstack_a;
 	char	**binstack_b;
@@ -712,7 +711,7 @@ void	sorting(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
 	if (stack_a_size == 5)
 		small_sort_five(stack_a, stack_b, stack_a_size, stack_b_size);
 	if (stack_a_size > 5)
-		large_sort(stack_a, stack_a_size, stack_b_size, maxwidth);
+		large_sort(stack_a, stack_b, stack_a_size, stack_b_size, maxwidth);
 }
 
 void	push_swap(int *stack_a, int *stack_b, int argc)
