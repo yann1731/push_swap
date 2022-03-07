@@ -464,10 +464,8 @@ int	argcount(char **str)
 
 char	**handle_single_string(char *argv[], int *argc)
 {
-	char **str;
-	int	i;
+	char	**str;
 
-	i = -1;
 	str = ft_split(argv[1], ' ');
 	errorhandlingint(str);
 	*argc = argcount(str);
@@ -485,10 +483,8 @@ void swap(int *a, int *b)
 
 void bubble_sort(int *to_sort, int stack_size)
 {
-	int	i;
 	int j;
 
-	i = 0;
 	j = 0;
 	while (is_sorted(to_sort, stack_size) == 0)
 	{
@@ -636,14 +632,23 @@ void	large_sorting(char **binstack_a, char **binstack_b, int stack_a_size, int s
 	}
 }
 
-void	large_sort(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size, int bit)
+void	large_sort(int *stack_a, int stack_a_size, int stack_b_size, int bit)
 {
 	char	**binstack_a;
 	char	**binstack_b;
+	int		i;
 
+	i = -1;
 	binstack_a = strstack(stack_a, stack_a_size);
 	binstack_b = mallocbinstack(stack_a_size);
 	large_sorting(binstack_a, binstack_b, stack_a_size, stack_b_size, bit);
+	while (++i < (stack_a_size + 1))
+	{
+		free(binstack_a[i]);
+		free(binstack_b[i]);
+	}
+	free(binstack_a);
+	free(binstack_b);
 }
 
 void	small_sort_five(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
@@ -711,7 +716,7 @@ void	sorting(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
 	if (stack_a_size == 5)
 		small_sort_five(stack_a, stack_b, stack_a_size, stack_b_size);
 	if (stack_a_size > 5)
-		large_sort(stack_a, stack_b, stack_a_size, stack_b_size, maxwidth);
+		large_sort(stack_a, stack_a_size, stack_b_size, maxwidth);
 }
 
 void	push_swap(int *stack_a, int *stack_b, int argc)
@@ -728,7 +733,6 @@ int main(int argc, char *argv[])
 {
 	int 	*stack_a;
 	int		*stack_b;
-	char	**str;
 
 	if (argc == 1)
 		exit(0);
@@ -747,5 +751,7 @@ int main(int argc, char *argv[])
 	stack_b = malloc((argc - 1) * sizeof(int));
 	errorhandlingstack(stack_a, stack_b);
 	push_swap(stack_a, stack_b, argc);
+	free(stack_a);
+	free(stack_b);
 	return (0);
 }
