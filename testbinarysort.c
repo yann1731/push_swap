@@ -167,6 +167,16 @@ void	pb(int *stack_a, int *stack_b, int *stack_a_size, int *stack_b_size)
 	}
 }
 
+void	rabin(char **stack_a, int stack_a_size)
+{
+	char *temp;
+
+	temp = ft_strdup(stack_a[0]);
+	binshiftup(stack_a, stack_a_size);
+	ft_strcpy(stack_a[stack_a_size - 1], temp);
+	free(temp);
+}
+
 void	ra(int *stack_a, int stack_a_size)
 {
 	int temp;
@@ -591,16 +601,50 @@ char	**strstack(int *stack_a, int stack_a_size)
 	return (binstack);
 }
 
-void	large_sort(int *stack_a, int stack_a_size, int stack_b_size)
+void	stackrewind(char **binstack_a, char **binstack_b, int *stack_a_size, int *stack_b_size, int *counter)
+{
+	*counter = 0;
+	while (*stack_b_size > 0)
+		pabin(binstack_a, binstack_b, stack_a_size, stack_b_size);
+}
+
+void	large_sorting(char **binstack_a, char **binstack_b, int stack_a_size, int stack_b_size, int bit)
+{
+	int counter;
+	int stop;
+
+	counter = 0;
+	stop = stack_a_size;
+	while (bit > 0)
+	{
+		while (binstack_a[0][bit - 1] == '0')
+		{
+			pbbin(binstack_a, binstack_b, &stack_a_size, &stack_b_size);
+			counter++;
+			if (counter == stop)
+			{
+				bit--;
+				stackrewind(binstack_a, binstack_b, &stack_a_size, &stack_b_size, &counter);
+			}
+		}
+		counter++;
+		rabin(binstack_a, stack_a_size);
+		if (counter == stop)
+		{
+			bit--;
+			stackrewind(binstack_a, binstack_b, &stack_a_size, &stack_b_size, &counter);
+		}
+	}
+}
+
+void	large_sort(int *stack_a, int stack_a_size, int stack_b_size, int bit)
 {
 	char	**binstack_a;
 	char	**binstack_b;
-	int		maxwidth;
 
-	maxwidth = maxbinwidth(stack_a_size);
 	binstack_a = strstack(stack_a, stack_a_size);
 	binstack_b = mallocbinstack(stack_a_size);
-	
+	large_sorting(binstack_a, binstack_b, stack_a_size, stack_b_size, bit);
 }
 
 void	small_sort_five(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
@@ -656,6 +700,9 @@ void	small_sort_four(int *stack_a, int *stack_b, int stack_a_size, int stack_b_s
 
 void	sorting(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
 {
+	int	maxwidth;
+
+	maxwidth = maxbinwidth(stack_a_size);
 	if (stack_a_size == 2)
 		small_sort_two(stack_a, stack_a_size);
 	if (stack_a_size == 3)
@@ -665,7 +712,7 @@ void	sorting(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
 	if (stack_a_size == 5)
 		small_sort_five(stack_a, stack_b, stack_a_size, stack_b_size);
 	if (stack_a_size > 5)
-		large_sort(stack_a, stack_a_size, stack_b_size);
+		large_sort(stack_a, stack_a_size, stack_b_size, maxwidth);
 }
 
 void	push_swap(int *stack_a, int *stack_b, int argc)
