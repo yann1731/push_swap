@@ -42,6 +42,70 @@ void	shiftstackup(int *stack, int stacksize)
 	}
 }
 
+void	ft_strcpy(char *dst, const char *src)
+{
+	int	i;
+
+	i = -1;
+	while (src[++i])
+		dst[i] = src[i];
+	return (src);
+}
+
+void	binshiftup(char **binstack, int stacksize, int maxwidth)
+{
+	int stop;
+	int index;
+
+	stop = stacksize;
+	index = 0;
+
+	while (index < stop)
+	{
+		ft_strlcpy(binstack[index], binstack[index + 1], maxwidth);
+		index++;
+	}
+}
+
+void	binshiftdown(char **binstack, int stacksize, int maxwidth)
+{
+	int index;
+
+	index = stacksize;
+
+	while (index > 0)
+	{
+		ft_strlcpy(binstack[index], binstack[index - 1], maxwidth);
+		index--;
+	}
+}
+
+void	pabin(char **binstack_a, char **binstack_b, int *stack_a_size, int *stack_b_size, int maxwidth)
+{
+	if (*stack_b_size != 0)
+	{
+		binshiftdown(binstack_a, *stack_a_size, maxwidth);
+		binstack_a[0] = ft_strdup(binstack_b[0]);
+		binshiftup(binstack_b, *stack_b_size, maxwidth);
+		*stack_a_size += 1;
+		*stack_b_size -= 1;
+		write(1, "pa\n", 3);
+	}
+}
+
+void	pbbin(char **binstack_a, char **binstack_b, int *stack_a_size, int *stack_b_size, int maxwidth)
+{
+	if (*stack_a_size != 0)
+	{
+		binshiftdown(binstack_b, *stack_b_size, maxwidth);
+		binstack_b[0] = ft_strdup(binstack_a[0]);
+		binshiftup(binstack_a, *stack_a_size, maxwidth);
+		*stack_b_size += 1;
+		*stack_a_size -= 1;
+		write(1, "pb\n", 3);
+	}
+}
+
 void	pa(int *stack_a, int *stack_b, int *stack_a_size, int *stack_b_size)
 {
 	if (*stack_b_size != 0)
@@ -507,15 +571,16 @@ char	**strstack(int *stack_a, int stack_a_size)
 	return (binstack);
 }
 
-void	large_sort(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
+void	large_sort(int *stack_a, int stack_a_size, int stack_b_size)
 {
-	char **str;
-	int	i;
+	char	**binstack_a;
+	char	**binstack_b;
 
-	i = -1;
-	str = strstack(stack_a, stack_a_size);
-	while (str[++i])
-		printf("%s\n", str[i]);
+	binstack_a = strstack(stack_a, stack_a_size);
+	binstack_b = malloc((stack_a_size + 1) * sizeof(char *));
+	binstack_b[0] = NULL;
+	pbbin(binstack_a, binstack_b, &stack_a_size, &stack_b_size);
+	printf("%s\n", binstack_b[0]);
 }
 
 void	small_sort_five(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
@@ -580,7 +645,7 @@ void	sorting(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
 	if (stack_a_size == 5)
 		small_sort_five(stack_a, stack_b, stack_a_size, stack_b_size);
 	if (stack_a_size > 5)
-		large_sort(stack_a, stack_b, stack_a_size, stack_b_size);
+		large_sort(stack_a, stack_a_size, stack_b_size);
 }
 
 void	push_swap(int *stack_a, int *stack_b, int argc)
