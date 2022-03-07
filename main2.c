@@ -1,155 +1,79 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
-#include "libft.h"
 
-int	is_sorted(int *stack_a, int stack_a_size)
+int	maxbinwidth(int nb)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	j = i + 1;
-	while (j < stack_a_size)
+	while (nb != 0)
 	{
-		if (stack_a[i] > stack_a[j])
-			return (0);
+		nb /= 2;
 		i++;
-		j++;
 	}
-	return (1);
+	return (i);
 }
 
-int	checkdupe(int *stack, int argc)
+int	memsizebin(unsigned long long n)
 {
-	int i;
-	int j;
-
-	j = 0;
-	i =  j + 1;
-	while (j < argc)
-	{
-		while (i < (argc - 1))
-		{
-			if (stack[i] == stack[j])
-				return (0);
-			i++;
-		}
-	j++;
-	i = j + 1;
-	}
-	return (1);
-}
-
-int *buildstack(char *argv[], int *stack, int argc)
-{
-	int i;
-	int j;
+	long long	i;
 
 	i = 0;
-	j = 0;
-	while (argv[++i])
-		stack[j++] = ft_atoi(argv[i]);
-	if (!checkdupe(stack, argc))
+	if (n == 0)
+		return (1);
+	while (n != 0)
 	{
-		write(2, "Error\n", 6);
-		exit(0);
+		i++;
+		n /= 2;
 	}
-	return (stack);
+	return (i);
 }
 
-int	intcheck(char **str)
+static char	*posnumbin(unsigned long long n, char *str, int maxwidth)
 {
-	int i;
-	int j;
+	size_t		max;
+	const char	*base;
 
-	i = 0;
-	j = -1;
-	while (str[++i])
+	base = "01";
+	max = memsizebin(n);
+	str[maxwidth] = '\0';
+	while (maxwidth > 0)
 	{
-		while (str[i][++j])
-			if (str[i][j] < '0' || str[i][j] > '9')
-				return (0);
-	j = -1;
+		str[maxwidth - 1] = base[n % 2];
+		n = n / 2;
+		maxwidth--;
 	}
-	return (1);
+	return (str);
 }
 
-void	errorhandlingint(char *argv[])
+char	*ft_itoa_bin(unsigned long long n, int maxwidth)
 {
-	if (intcheck(argv) == 0)
-	{
-		write(2, "Error\n", 6);
-		exit(0);
-	}
-}
+	char	*str;
 
-void	errorhandlingstack(int *stack_a, int *stack_b)
-{
-	if (stack_a == NULL || stack_b == NULL)
+	if (n == 0)
 	{
-		if (stack_a == NULL)
+		str = malloc((maxwidth + 1) * sizeof(char));
+		str[maxwidth] = '\0';
+		while (maxwidth > 0)
 		{
-			write(2, "Error\n", 6);
-			exit(0);
+			str[maxwidth - 1] = '0';
+			maxwidth--; 
 		}
-		if (stack_b == NULL)
-		{
-			write(2, "Error\n", 6);
-			exit(0);
-		}
+		return (str);
 	}
+	str = malloc((maxwidth + 1) * sizeof(char));
+	if (str == NULL)
+		return (NULL);
+	else
+		str = posnumbin(n, str, maxwidth);
+	return (str);
 }
 
-void	shiftstackdown(int *stack, int *stacksize)
+int	main(void)
 {
-	int index;
+	char *bin;
 
-	index = *stacksize;
-
-	while (index > 0)
-	{
-		*(stack + index) = *(stack + (index - 1));
-		index--;
-	}
-	*(stack + index) = 0;
-}
-
-void	shiftstackup(int *stack, int *stacksize)
-{
-	int stop;
-	int index;
-
-	stop = *stacksize;
-	index = 0;
-
-	while (index < stop)
-	{
-		*(stack + index) = *(stack + (index + 1));
-		index++;
-	}
-}
-
-void	push_swap(int *stack_a, int *stack_b, int argc)
-{
-	int stack_a_size;
-	int stack_b_size;
-
-	stack_a_size = argc - 1;
-	stack_b_size = 0;
-}
-
-int main(int argc, char *argv[])
-{
-	int *stack_a;
-	int	*stack_b;
-
-	errorhandlingint(argv);
-	stack_a = malloc((argc - 1) * sizeof(int));
-	stack_b = malloc((argc - 1) * sizeof(int));
-	errorhandlingstack(stack_a, stack_b);
-	stack_a = buildstack(argv, stack_a, argc);
-	push_swap(stack_a, stack_b, argc);
-
+	bin = ft_itoa_bin(6, maxbinwidth(500));
+	printf("%s\n", bin);
 	return (0);
 }

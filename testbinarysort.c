@@ -3,6 +3,17 @@
 #include <unistd.h>
 #include "libft.h"
 
+int	findindex(int *stack_a, int tofind, int stack_a_size)
+{
+	int	i;
+
+	i = -1;
+	while (++i < stack_a_size)
+		if (stack_a[i] == tofind)
+			return (i);
+	return (-1);
+}
+
 void	shiftstackdown(int *stack, int stacksize)
 {
 	int index;
@@ -143,6 +154,19 @@ void	ss(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
 	write(1, "ss\n", 3);
 }
 
+int	maxbinwidth(int nb)
+{
+	int	i;
+
+	i = 0;
+	while (nb != 0)
+	{
+		nb /= 2;
+		i++;
+	}
+	return (i);
+}
+
 int	memsizebin(unsigned long long n)
 {
 	long long	i;
@@ -158,41 +182,43 @@ int	memsizebin(unsigned long long n)
 	return (i);
 }
 
-static char	*posnumbin(unsigned long long n, char *str)
+static char	*posnumbin(unsigned long long n, char *str, int maxwidth)
 {
 	size_t		max;
 	const char	*base;
 
 	base = "01";
 	max = memsizebin(n);
-	str[max] = '\0';
-	while (max > 0)
+	str[maxwidth] = '\0';
+	while (maxwidth > 0)
 	{
-		str[max - 1] = base[n % 2];
+		str[maxwidth - 1] = base[n % 2];
 		n = n / 2;
-		max--;
+		maxwidth--;
 	}
 	return (str);
 }
 
-char	*ft_itoa_bin(unsigned long long n)
+char	*ft_itoa_bin(unsigned long long n, int maxwidth)
 {
 	char	*str;
-	size_t	max;
 
-	max = memsizebin(n);
 	if (n == 0)
 	{
-		str = malloc(2 * sizeof(char));
-		str[0] = '0';
-		str[1] = '\0';
+		str = malloc((maxwidth + 1) * sizeof(char));
+		str[maxwidth] = '\0';
+		while (maxwidth > 0)
+		{
+			str[maxwidth - 1] = '0';
+			maxwidth--; 
+		}
 		return (str);
 	}
-	str = malloc((max + 1) * sizeof(char));
+	str = malloc((maxwidth + 1) * sizeof(char));
 	if (str == NULL)
 		return (NULL);
 	else
-		str = posnumbin(n, str);
+		str = posnumbin(n, str, maxwidth);
 	return (str);
 }
 
@@ -299,8 +325,13 @@ int	intcheck(char **str)
 	while (str[++i])
 	{
 		while (str[i][++j])
+		{
 			if (str[i][j] < '0' || str[i][j] > '9')
-				return (0);
+			{
+				if (str[i][j] != '-' && (str[i][j + 1] < '0' || str[i][j + 1] > '9'))
+					return (0);
+			}
+		}
 	j = -1;
 	}
 	return (1);
@@ -454,17 +485,37 @@ void	insert_max(int *stack_a, int *stack_b, int *stack_a_size, int *stack_b_size
 	pa(stack_a, stack_b, stack_a_size, stack_b_size);
 	ra(stack_a, *stack_a_size);
 }
-// pop top element of stack_a to stack_b
-// compare top element of stack_a to stack_b
-// if top element of stack_a < than top element of stack_b
-// move top element of stack_b to stack_a and top element of stack_a to stack_b
-// if top element of stack_a > top element of stack_b
-// move top element of stack_a to stack_b
-// once stack_a is empty and stack_b is sorted in reverse order, return everything to stack_a
+
+char	**strstack(int *stack_a, int stack_a_size)
+{
+	int i;
+	int	*tempstack;
+	char **binstack;
+
+	tempstack = malloc(stack_a_size * sizeof(int));
+	binstack = malloc(stack_a_size * sizeof(char *));
+	stack_copy(stack_a, tempstack, stack_a_size);
+	bubble_sort(tempstack, stack_a_size);
+	binstack[stack_a_size] = NULL;
+	i = 0;
+	while (i < stack_a_size)
+	{
+		binstack[findindex(stack_a, tempstack[i], stack_a_size)] = ft_itoa_bin((int) i, maxbinwidth(stack_a_size));
+		i++;
+	}
+	free(tempstack);
+	return (binstack);
+}
 
 void	large_sort(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
 {
-	printf("yay!\n");
+	char **str;
+	int	i;
+
+	i = -1;
+	str = strstack(stack_a, stack_a_size);
+	while (str[++i])
+		printf("%s\n", str[i]);
 }
 
 void	small_sort_five(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
@@ -518,17 +569,6 @@ void	small_sort_four(int *stack_a, int *stack_b, int stack_a_size, int stack_b_s
 	}
 }
 
-int	findindex(int *stack_a, int tofind, int stack_a_size)
-{
-	int	i;
-
-	i = -1;
-	while (++i < stack_a_size)
-		if (stack_a[i] == tofind)
-			return (i);
-	return (0);
-}
-
 void	sorting(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
 {
 	if (stack_a_size == 2)
@@ -538,13 +578,9 @@ void	sorting(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
 	if (stack_a_size == 4)
 		small_sort_four(stack_a, stack_b, stack_a_size, stack_b_size);
 	if (stack_a_size == 5)
-		large_sort(stack_a, stack_b, stack_a_size, stack_b_size);
+		small_sort_five(stack_a, stack_b, stack_a_size, stack_b_size);
 	if (stack_a_size > 5)
 		large_sort(stack_a, stack_b, stack_a_size, stack_b_size);
-	int i;
-	i = -1;
-	while (++i < 5)
-		printf("%d\n", stack_a[i]);
 }
 
 void	push_swap(int *stack_a, int *stack_b, int argc)
