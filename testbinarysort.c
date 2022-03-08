@@ -175,6 +175,7 @@ void	rabin(char **stack_a, int stack_a_size)
 	temp = ft_strdup(stack_a[0]);
 	binshiftup(stack_a, stack_a_size);
 	ft_strcpy(stack_a[stack_a_size - 1], temp);
+	write(1, "ra\n", 3);
 	free(temp);
 }
 
