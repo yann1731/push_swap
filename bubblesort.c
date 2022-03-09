@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bubblesort.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yst-laur <yst-laur@student.42quebec.c      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/09 14:05:47 by yst-laur          #+#    #+#             */
+/*   Updated: 2022/03/09 14:05:50 by yst-laur         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "libft.h"
 #include "push_swap.h"
 
-void bubble_sort(int *to_sort, int stack_size)
+void	bubble_sort(int *to_sort, int stack_size)
 {
-	int j;
+	int	j;
 
 	j = 0;
 	while (is_sorted(to_sort, stack_size) == 0)

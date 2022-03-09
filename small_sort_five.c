@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   small_sort_five.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yst-laur <yst-laur@student.42quebec.c      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/09 14:24:10 by yst-laur          #+#    #+#             */
+/*   Updated: 2022/03/09 14:24:13 by yst-laur         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "libft.h"
 #include "push_swap.h"
 
-void	small_sort_five(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
+void	small_sort_five(int *stack_a, int *stack_b,
+		int stack_a_size, int stack_b_size)
 {
 	int	*tempstack;
 
@@ -16,11 +28,14 @@ void	small_sort_five(int *stack_a, int *stack_b, int stack_a_size, int stack_b_s
 		if (stack_b[0] == tempstack[0])
 			pa(stack_a, stack_b, &stack_a_size, &stack_b_size);
 		if (stack_b[0] == tempstack[1])
-			insert_second(stack_a, stack_b, &stack_a_size, &stack_b_size, tempstack);
+			insert_second(stack_a, stack_b, &stack_a_size,
+				&stack_b_size, tempstack);
 		if (stack_b[0] == tempstack[2])
-			insert_mid(stack_a, stack_b, &stack_a_size, &stack_b_size, tempstack);
+			insert_mid(stack_a, stack_b, &stack_a_size,
+				&stack_b_size, tempstack);
 		if (stack_b[0] == tempstack[3])
-			insert_sec_to_last(stack_a, stack_b, &stack_a_size, &stack_b_size, tempstack);
+			insert_sec_to_last(stack_a, stack_b, &stack_a_size,
+				&stack_b_size, tempstack);
 		if (stack_b[0] == tempstack[4])
 			insert_max(stack_a, stack_b, &stack_a_size, &stack_b_size);
 	}

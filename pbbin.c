@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pbbin.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yst-laur <yst-laur@student.42quebec.c      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/09 14:20:37 by yst-laur          #+#    #+#             */
+/*   Updated: 2022/03/09 14:20:40 by yst-laur         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "libft.h"
 #include "push_swap.h"
 
-void	pbbin(char **binstack_a, char **binstack_b, int *stack_a_size, int *stack_b_size)
+void	pbbin(char **binstack_a, char **binstack_b,
+		int *stack_a_size, int *stack_b_size)
 {
 	if (*stack_a_size != 0)
 	{
