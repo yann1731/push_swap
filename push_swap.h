@@ -1,4 +1,18 @@
-#include "stdlib.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yst-laur <yst-laur@student.42quebec.c      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/09 14:21:17 by yst-laur          #+#    #+#             */
+/*   Updated: 2022/03/09 14:21:45 by yst-laur         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
+
+# include <stdlib.h>
 
 int		intcheck(char **str);
 int		*buildstack(char *argv[], int *stack, int argc);
@@ -12,22 +26,27 @@ int		is_sorted(int *stack_a, int stack_a_size);
 void	smallsort(int *stack_a, int stack_a_size);
 void	sa(int *stack_a, int stack_a_size);
 void	sb(int *stack_b, int stack_b_size);
-void	ss(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size);
+void	ss(int *stack_a, int *stack_b,
+			int stack_a_size, int stack_b_size);
 void	ra(int *stack_a, int stack_a_size);
 void	rb(int *stack_b, int stack_b_size);
-void	rr(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size);
+void	rr(int *stack_a, int *stack_b,
+			int stack_a_size, int stack_b_size);
 void	rra(int *stack_a, int stack_a_size);
 void	rrb(int *stack_b, int stack_b_size);
 void	rrr(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size);
-void	sorting(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size);
+void	sorting(int *stack_a, int *stack_b,
+			int stack_a_size, int stack_b_size);
 int		maxbinwidth(int nb);
 char	**mallocbinstack(int stack_a_size);
 int		findindex(int *stack_a, int tofind, int stack_a_size);
 void	ft_strcpy(char *dst, const char *src);
 void	binshiftup(char **binstack, int stacksize);
 void	binshiftdown(char **binstack, int stacksize);
-void	pabin(char **binstack_a, char **binstack_b, int *stack_a_size, int *stack_b_size);
-void	pbbin(char **binstack_a, char **binstack_b, int *stack_a_size, int *stack_b_size);
+void	pabin(char **binstack_a, char **binstack_b,
+			int *stack_a_size, int *stack_b_size);
+void	pbbin(char **binstack_a, char **binstack_b,
+			int *stack_a_size, int *stack_b_size);
 int		memsizebin(unsigned long long n);
 char	*posnumbin(unsigned long long n, char *str, int maxwidth);
 char	*ft_itoa_bin(unsigned long long n, int maxwidth);
@@ -40,12 +59,20 @@ void	bubble_sort(int *to_sort, int stack_size);
 void	small_sort_two(int *stack_a, int stack_a_size);
 void	small_sort(int *stack_a, int stack_a_size);
 void	stack_copy(int *to_copy, int *copy_to, int to_copy_size);
-void	insert_second(int *stack_a, int *stack_b, int *stack_a_size, int *stack_b_size, int *tempstack);
-void	insert_mid(int *stack_a, int *stack_b,	int *stack_a_size, int *stack_b_size, int *tempstack);
-void	insert_sec_to_last(int *stack_a, int *stack_b, int *stack_a_size, int *stack_b_size, int *tempstack);
-void	insert_max(int *stack_a, int *stack_b, int *stack_a_size, int *stack_b_size);
+void	insert_second(int *stack_a, int *stack_b,
+			int *stack_a_size, int *stack_b_size, int *tempstack);
+void	insert_mid(int *stack_a, int *stack_b,
+			int *stack_a_size, int *stack_b_size, int *tempstack);
+void	insert_sec_to_last(int *stack_a, int *stack_b,
+			int *stack_a_size, int *stack_b_size, int *tempstack);
+void	insert_max(int *stack_a, int *stack_b,
+			int *stack_a_size, int *stack_b_size);
 char	**strstack(int *stack_a, int stack_a_size);
-void	stackrewind(char **binstack_a, char **binstack_b, int *stack_a_size, int *stack_b_size, int *counter);
-void	large_sorting(char **binstack_a, char **binstack_b, int stack_a_size, int stack_b_size, int bit);
+void	stackrewind(char **binstack_a, char **binstack_b,
+			int *stack_a_size, int *stack_b_size, int *counter);
+void	large_sorting(char **binstack_a, char **binstack_b,
+			int stack_a_size, int stack_b_size, int bit);
 void	large_sort(int *stack_a, int stack_a_size, int stack_b_size, int bit);
-void	small_sort_five(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size);
+void	small_sort_five(int *stack_a, int *stack_b,
+			int stack_a_size, int stack_b_size);
+#endif
