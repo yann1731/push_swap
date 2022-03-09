@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 #ifndef LIBFT_H
 # define LIBFT_H
-# define new mynew
 
 # include	<unistd.h>
 # include	<stdlib.h>
