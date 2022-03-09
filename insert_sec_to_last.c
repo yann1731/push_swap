@@ -12,7 +12,8 @@
 #include "libft.h"
 #include "push_swap.h"
 
-void	insert_sec_to_last(int *stack_a, int *stack_b, int *stack_a_size, int *stack_b_size, int *tempstack)
+void	insert_sec_to_last(int *stack_a, int *stack_b,
+			int *stack_a_size, int *stack_b_size, int *tempstack)
 {
 	if (stack_a[*(stack_a_size) - 1] == tempstack[4])
 	{

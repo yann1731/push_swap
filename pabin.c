@@ -12,7 +12,8 @@
 #include "libft.h"
 #include "push_swap.h"
 
-void	pabin(char **binstack_a, char **binstack_b, int *stack_a_size, int *stack_b_size)
+void	pabin(char **binstack_a, char **binstack_b,
+			int *stack_a_size, int *stack_b_size)
 {
 	if (*stack_b_size != 0)
 	{

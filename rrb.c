@@ -14,7 +14,7 @@
 
 void	rrb(int *stack_b, int stack_b_size)
 {
-	int temp;
+	int	temp;
 
 	temp = *(stack_b + stack_b_size);
 	shiftstackdown(stack_b, stack_b_size);

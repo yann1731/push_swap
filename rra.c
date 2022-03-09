@@ -14,7 +14,7 @@
 
 void	rra(int *stack_a, int stack_a_size)
 {
-	int temp;
+	int	temp;
 
 	temp = *(stack_a + stack_a_size);
 	shiftstackdown(stack_a, stack_a_size);

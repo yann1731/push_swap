@@ -14,10 +14,9 @@
 
 void	binshiftdown(char **binstack, int stacksize)
 {
-	int index;
+	int	index;
 
 	index = stacksize;
-
 	while (index > 0)
 	{
 		ft_strcpy(binstack[index], binstack[index - 1]);

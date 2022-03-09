@@ -14,7 +14,7 @@
 
 void	rb(int *stack_b, int *stack_b_size)
 {
-	int temp;
+	int	temp;
 
 	temp = *stack_b;
 	shiftstackup(stack_b, stack_b_size);
