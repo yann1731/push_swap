@@ -1,12 +1,12 @@
-#include "push_swap.h"
 #include "libft.h"
+#include "push_swap.h"
 
-int *buildstack(char *argv[], int *stack, int argc)
+int *buildstack_single(char *argv[], int *stack, int argc)
 {
 	int i;
 	int j;
 
-	i = 0;
+	i = -1;
 	j = 0;
 	while (argv[++i])
 		stack[j++] = ft_atoi(argv[i]);

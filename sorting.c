@@ -3,12 +3,17 @@
 
 void	sorting(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
 {
-	int	a;
-	int	b;
+	int	maxwidth;
 
-	a = 0;
-	b = 0;
-	while (a < stack_a_size)
-	{
-	}
+	maxwidth = maxbinwidth(stack_a_size);
+	if (stack_a_size == 2)
+		small_sort_two(stack_a, stack_a_size);
+	if (stack_a_size == 3)
+		small_sort(stack_a, stack_a_size);
+	if (stack_a_size == 4)
+		small_sort_four(stack_a, stack_b, stack_a_size, stack_b_size);
+	if (stack_a_size == 5)
+		small_sort_five(stack_a, stack_b, stack_a_size, stack_b_size);
+	if (stack_a_size > 5)
+		large_sort(stack_a, stack_a_size, stack_b_size, maxwidth);
 }

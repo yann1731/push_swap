@@ -11,8 +11,13 @@ int	intcheck(char **str)
 	while (str[++i])
 	{
 		while (str[i][++j])
+		{
 			if (str[i][j] < '0' || str[i][j] > '9')
-				return (0);
+			{
+				if (str[i][j] != '-' && (str[i][j + 1] < '0' || str[i][j + 1] > '9'))
+					return (0);
+			}
+		}
 	j = -1;
 	}
 	return (1);

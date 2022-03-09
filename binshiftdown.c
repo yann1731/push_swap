@@ -1,7 +1,7 @@
 #include "libft.h"
 #include "push_swap.h"
 
-void	shiftstackdown(int *stack, int stacksize)
+void	binshiftdown(char **binstack, int stacksize)
 {
 	int index;
 
@@ -9,7 +9,7 @@ void	shiftstackdown(int *stack, int stacksize)
 
 	while (index > 0)
 	{
-		*(stack + index) = *(stack + (index - 1));
+		ft_strcpy(binstack[index], binstack[index - 1]);
 		index--;
 	}
 }
