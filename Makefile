@@ -24,17 +24,21 @@ CFLAGS =		-Wall -Wextra -Werror
 
 OPT =			-o
 
+DB =			-g
+
 RM =			rm -f
 
 CC =			gcc
 
 .c.o:
-				${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+				${CC} ${CFLAGS} ${DB} -c $< -o ${<:.c=.o}
 all:			${OBJS}
-				${CC} ${CFLAGS} ${OBJS} ${OPT} ${NAME}
+				${CC} ${CFLAGS} ${OBJS} ${DB} ${OPT} ${NAME}
+debug:			${OBJS}
+				${CC} ${CFLAGS} ${OBJS} ${DB} ${OPT} ${NAME}
 clean:
 				${RM} ${OBJS}
 fclean:			clean
 				${RM} ${NAME}
 re:				fclean all
-.PHONY:			all clean fclean re bonus
+.PHONY:			all clean fclean re bonus debug

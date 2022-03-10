@@ -21,5 +21,5 @@ void	sa(int *stack_a, int stack_a_size)
 	tmpvalue = stack_a[0];
 	*(stack_a) = *(stack_a + 1);
 	*(stack_a + 1) = tmpvalue;
-	write(1, "sa\n", 1);
+	write(1, "sa\n", 3);
 }
