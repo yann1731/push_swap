@@ -12,9 +12,9 @@
 #include "libft.h"
 #include "push_swap.h"
 
-int *stackalloc(int argc)
+int	*stackalloc(int argc)
 {
-	int *stack;
+	int	*stack;
 
 	stack = malloc(argc * sizeof(int));
 	if (stack == NULL)

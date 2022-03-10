@@ -23,7 +23,7 @@ char	*ft_itoa_bin(unsigned long long n, int maxwidth)
 		while (maxwidth > 0)
 		{
 			str[maxwidth - 1] = '0';
-			maxwidth--; 
+			maxwidth--;
 		}
 		return (str);
 	}

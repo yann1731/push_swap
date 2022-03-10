@@ -14,8 +14,8 @@
 
 void	binshiftup(char **binstack, int stacksize)
 {
-	int stop;
-	int index;
+	int	stop;
+	int	index;
 	int	maxwidth;
 	int	i;
 

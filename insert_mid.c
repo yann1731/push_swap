@@ -12,7 +12,8 @@
 #include "libft.h"
 #include "push_swap.h"
 
-void	insert_mid(int *stack_a, int *stack_b,	int *stack_a_size, int *stack_b_size, int *tempstack)
+void	insert_mid(int *stack_a, int *stack_b,
+			int *stack_a_size, int *stack_b_size, int *tempstack)
 {
 	if (stack_a[0] == tempstack[0] && stack_a[1] == tempstack[1])
 	{

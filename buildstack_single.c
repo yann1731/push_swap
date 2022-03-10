@@ -12,10 +12,10 @@
 #include "libft.h"
 #include "push_swap.h"
 
-int *buildstack_single(char *argv[], int *stack, int argc)
+int	*buildstack_single(char *argv[], int *stack, int argc)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = -1;
 	j = 0;
