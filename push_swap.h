@@ -24,6 +24,10 @@ void	shiftstackup(int *stack, int stacksize);
 void	shiftstackdown(int *stack, int stacksize);
 int		is_sorted(int *stack_a, int stack_a_size);
 void	smallsort(int *stack_a, int stack_a_size);
+void	pa(int *stack_a, int *stack_b, int *stack_a_size,
+			int *stack_b_size);
+void	pb(int *stack_a, int *stack_b, int *stack_a_size,
+			int *stack_b_size);
 void	sa(int *stack_a, int stack_a_size);
 void	sb(int *stack_b, int stack_b_size);
 void	ss(int *stack_a, int *stack_b,
@@ -43,10 +47,8 @@ int		findindex(int *stack_a, int tofind, int stack_a_size);
 void	ft_strcpy(char *dst, const char *src);
 void	binshiftup(char **binstack, int stacksize);
 void	binshiftdown(char **binstack, int stacksize);
-void	pabin(char **binstack_a, char **binstack_b,
-			int *stack_a_size, int *stack_b_size);
-void	pbbin(char **binstack_a, char **binstack_b,
-			int *stack_a_size, int *stack_b_size);
+void	pabin(char **binstack_a, char **binstack_b);
+void	pbbin(char **binstack_a, char **binstack_b);
 int		memsizebin(unsigned long long n);
 char	*posnumbin(unsigned long long n, char *str, int maxwidth);
 char	*ft_itoa_bin(unsigned long long n, int maxwidth);
@@ -60,19 +62,24 @@ void	small_sort_two(int *stack_a, int stack_a_size);
 void	small_sort(int *stack_a, int stack_a_size);
 void	stack_copy(int *to_copy, int *copy_to, int to_copy_size);
 void	insert_second(int *stack_a, int *stack_b,
-			int *stack_a_size, int *stack_b_size, int *tempstack);
+			int *stack_a_size, int *stack_b_size);
 void	insert_mid(int *stack_a, int *stack_b,
-			int *stack_a_size, int *stack_b_size, int *tempstack);
+			int *stack_a_size, int *stack_b_size);
 void	insert_sec_to_last(int *stack_a, int *stack_b,
-			int *stack_a_size, int *stack_b_size, int *tempstack);
+			int *stack_a_size, int *stack_b_size);
 void	insert_max(int *stack_a, int *stack_b,
 			int *stack_a_size, int *stack_b_size);
 char	**strstack(int *stack_a, int stack_a_size);
 void	stackrewind(char **binstack_a, char **binstack_b,
-			int *stack_a_size, int *stack_b_size, int *counter);
+			int *counter, int *bit);
 void	large_sorting(char **binstack_a, char **binstack_b,
-			int stack_a_size, int stack_b_size, int bit);
-void	large_sort(int *stack_a, int stack_a_size, int stack_b_size, int bit);
+			int bit);
+void	large_sort(int *stack_a, int stack_a_size, int bit);
 void	small_sort_five(int *stack_a, int *stack_b,
 			int stack_a_size, int stack_b_size);
+int		strstack_size(char **binstack);
+void	rabin(char **stack_a);
+void	small_sort_four(int *stack_a, int *stack_b,
+		int stack_a_size, int stack_b_size);
+
 #endif

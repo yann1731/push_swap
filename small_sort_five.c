@@ -28,14 +28,14 @@ void	small_sort_five(int *stack_a, int *stack_b,
 		if (stack_b[0] == tempstack[0])
 			pa(stack_a, stack_b, &stack_a_size, &stack_b_size);
 		if (stack_b[0] == tempstack[1])
-			insert_second(stack_a, stack_b, &stack_a_size,
-				&stack_b_size, tempstack);
+			insert_second(stack_a, stack_b,
+				&stack_a_size, &stack_b_size);
 		if (stack_b[0] == tempstack[2])
-			insert_mid(stack_a, stack_b, &stack_a_size,
-				&stack_b_size, tempstack);
+			insert_mid(stack_a, stack_b,
+				&stack_a_size, &stack_b_size);
 		if (stack_b[0] == tempstack[3])
-			insert_sec_to_last(stack_a, stack_b, &stack_a_size,
-				&stack_b_size, tempstack);
+			insert_sec_to_last(stack_a, stack_b,
+				&stack_a_size, &stack_b_size);
 		if (stack_b[0] == tempstack[4])
 			insert_max(stack_a, stack_b, &stack_a_size, &stack_b_size);
 	}
