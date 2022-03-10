@@ -22,7 +22,7 @@ void	large_sort(int *stack_a, int stack_a_size, int bit)
 	binstack_a = strstack(stack_a, stack_a_size);
 	binstack_b = mallocbinstack(stack_a_size);
 	large_sorting(binstack_a, binstack_b, bit);
-	while (++i < (stack_a_size + 1))
+	while (++i < stack_a_size)
 	{
 		free(binstack_a[i]);
 		free(binstack_b[i]);

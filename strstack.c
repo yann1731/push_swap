@@ -19,7 +19,7 @@ char	**strstack(int *stack_a, int stack_a_size)
 	char	**binstack;
 
 	tempstack = malloc(stack_a_size * sizeof(int));
-	binstack = malloc(stack_a_size * sizeof(char *));
+	binstack = malloc((stack_a_size + 1) * sizeof(char *));
 	stack_copy(stack_a, tempstack, stack_a_size);
 	bubble_sort(tempstack, stack_a_size);
 	i = 0;
@@ -30,5 +30,6 @@ char	**strstack(int *stack_a, int stack_a_size)
 		i++;
 	}
 	free(tempstack);
+	binstack[stack_a_size] = "\0\0\0\0";
 	return (binstack);
 }

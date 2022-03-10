@@ -20,6 +20,6 @@ void	stackrewind(char **binstack_a, char **binstack_b,
 	stack_b_size = strstack_size(binstack_b);
 	*counter = 0;
 	*bit -= 1;
-	while (stack_b_size > 0)
+	while (--stack_b_size >= 0)
 		pabin(binstack_a, binstack_b);
 }

@@ -80,6 +80,7 @@ void	small_sort_five(int *stack_a, int *stack_b,
 int		strstack_size(char **binstack);
 void	rabin(char **stack_a);
 void	small_sort_four(int *stack_a, int *stack_b,
-		int stack_a_size, int stack_b_size);
+			int stack_a_size, int stack_b_size);
+void	freeargv(char **argv);
 
 #endif

@@ -20,7 +20,7 @@ char	**mallocbinstack(int stack_a_size)
 
 	i = -1;
 	maxwidth = maxbinwidth(stack_a_size);
-	binstack = malloc(stack_a_size * sizeof(char *));
+	binstack = malloc((stack_a_size + 1) * sizeof(char *));
 	while (++i < stack_a_size)
 	{
 		binstack[i] = malloc((maxwidth + 1) * sizeof(char));
