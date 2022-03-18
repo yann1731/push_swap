@@ -38,5 +38,5 @@ int	main(int argc, char *argv[])
 	push_swap(stack_a, stack_b, argc);
 	free(stack_a);
 	free(stack_b);
-	return (0);
+	exit(0);
 }
