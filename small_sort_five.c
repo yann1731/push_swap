@@ -9,7 +9,7 @@
 /*   Updated: 2022/03/09 14:24:13 by yst-laur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "libft/libft.h"
 #include "push_swap.h"
 
 void	small_sort_five(int *stack_a, int *stack_b,

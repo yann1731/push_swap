@@ -9,7 +9,7 @@
 /*   Updated: 2022/03/09 14:25:24 by yst-laur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "libft/libft.h"
 #include "push_swap.h"
 
 void	stack_copy(int *to_copy, int *copy_to, int to_copy_size)

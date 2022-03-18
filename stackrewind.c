@@ -9,7 +9,7 @@
 /*   Updated: 2022/03/09 14:25:42 by yst-laur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "libft/libft.h"
 #include "push_swap.h"
 
 void	stackrewind(char **binstack_a, char **binstack_b,

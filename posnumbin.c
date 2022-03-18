@@ -9,7 +9,7 @@
 /*   Updated: 2022/03/09 14:20:53 by yst-laur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "libft/libft.h"
 #include "push_swap.h"
 
 char	*posnumbin(unsigned long long n, char *str, int maxwidth)

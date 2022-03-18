@@ -9,7 +9,7 @@
 /*   Updated: 2022/03/09 14:17:51 by yst-laur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "libft/libft.h"
 #include "push_swap.h"
 
 int	is_sorted(int *stack_a, int stack_a_size)

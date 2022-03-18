@@ -9,7 +9,7 @@
 /*   Updated: 2022/03/09 14:16:50 by yst-laur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "libft/libft.h"
 #include "push_swap.h"
 
 void	insert_second(int *stack_a, int *stack_b,

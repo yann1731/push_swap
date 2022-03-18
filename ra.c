@@ -9,7 +9,7 @@
 /*   Updated: 2022/03/09 14:22:00 by yst-laur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "libft/libft.h"
 #include "push_swap.h"
 
 void	ra(int *stack_a, int stack_a_size)

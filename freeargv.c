@@ -9,7 +9,7 @@
 /*   Updated: 2022/03/17 16:55:57 by yst-laur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "libft/libft.h"
 #include "push_swap.h"
 
 void	freeargv(char **argv)

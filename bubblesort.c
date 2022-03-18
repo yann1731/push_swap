@@ -9,7 +9,7 @@
 /*   Updated: 2022/03/09 14:05:50 by yst-laur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "libft/libft.h"
 #include "push_swap.h"
 
 void	bubble_sort(int *to_sort, int stack_size)

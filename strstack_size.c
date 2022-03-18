@@ -9,7 +9,7 @@
 /*   Updated: 2022/03/09 22:57:23 by yst-laur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "libft/libft.h"
 #include "push_swap.h"
 
 int	strstack_size(char **binstack)

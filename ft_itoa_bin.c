@@ -9,7 +9,7 @@
 /*   Updated: 2022/03/09 14:14:32 by yst-laur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "libft/libft.h"
 #include "push_swap.h"
 
 char	*ft_itoa_bin(unsigned long long n, int maxwidth)

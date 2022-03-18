@@ -9,7 +9,7 @@
 /*   Updated: 2022/03/09 14:15:40 by yst-laur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "libft/libft.h"
 #include "push_swap.h"
 
 char	**handle_single_string(char *argv[], int *argc)
