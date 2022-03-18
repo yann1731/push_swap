@@ -19,9 +19,13 @@ void	insert_mid(int *stack_a, int *stack_b,
 
 	tempstack = malloc(5 * sizeof(int));
 	stack_copy(stack_a, tempstack, *stack_a_size);
-	tempstack[3] = stack_b[0];
 	if (*stack_b_size == 2)
+	{
+		tempstack[3] = stack_b[0];
 		tempstack[4] = stack_b[1];
+	}
+	if (*stack_b_size == 1)
+		tempstack[4] = stack_b[0];
 	bubble_sort(tempstack, 5);
 	if (stack_a[0] == tempstack[0] && stack_a[1] == tempstack[1])
 	{

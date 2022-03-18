@@ -22,7 +22,7 @@ void	insert_second(int *stack_a, int *stack_b,
 	tempstack[3] = stack_b[0];
 	if (*stack_b_size == 2)
 		tempstack[4] = stack_b[1];
-	bubble_sort(tempstack, 5);
+	bubble_sort(tempstack, 4);
 	pa(stack_a, stack_b, stack_a_size, stack_b_size);
 	if (stack_a[1] == tempstack[0])
 		sa(stack_a, *stack_a_size);
