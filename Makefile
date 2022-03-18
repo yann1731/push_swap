@@ -4,7 +4,7 @@ SRCS =		argcount.c binshiftdown.c binshiftup.c bubblesort.c buildstack_single.c 
 			large_sort.c large_sorting.c main.c mallocbinstack.c maxbinwidth.c memsizebin.c pa.c pabin.c pb.c \
 			pbbin.c posnumbin.c push_swap.c ra.c rabin.c rb.c rr.c rra.c rrb.c rrr.c sa.c sb.c shiftstackdown.c \
 			shiftstackup.c small_sort_five.c small_sort_four.c small_sort_two.c small_sort.c sorting.c ss.c \
-			stack_copy.c stackalloc.c stackrewind.c strstack_size.c strstack.c swap.c
+			stack_copy.c stackalloc.c stackrewind.c strstack_size.c strstack.c swap.c freeargv.c
 
 SRCS_LIBFT =	ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c \
 				ft_itoa.c ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c ft_lstiter.c ft_lstlast.c \
