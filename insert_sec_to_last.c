@@ -19,9 +19,9 @@ void	insert_sec_to_last(int *stack_a, int *stack_b,
 
 	tempstack = malloc(5 * sizeof(int));
 	stack_copy(stack_a, tempstack, *stack_a_size);
-	tempstack[3] = stack_b[0];
+	tempstack[4] = stack_b[0];
 	if (*stack_b_size == 2)
-		tempstack[4] = stack_b[1];
+		tempstack[3] = stack_b[1];
 	bubble_sort(tempstack, 5);
 	if (stack_a[*(stack_a_size) - 1] == tempstack[4])
 	{

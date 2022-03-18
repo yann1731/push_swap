@@ -19,10 +19,10 @@ void	insert_second(int *stack_a, int *stack_b,
 
 	tempstack = malloc(5 * sizeof(int));
 	stack_copy(stack_a, tempstack, *stack_a_size);
-	tempstack[3] = stack_b[0];
+	tempstack[4] = stack_b[0];
 	if (*stack_b_size == 2)
-		tempstack[4] = stack_b[1];
-	bubble_sort(tempstack, 4);
+		tempstack[3] = stack_b[1];
+	bubble_sort(tempstack, 5);
 	pa(stack_a, stack_b, stack_a_size, stack_b_size);
 	if (stack_a[1] == tempstack[0])
 		sa(stack_a, *stack_a_size);
