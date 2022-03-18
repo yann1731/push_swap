@@ -33,7 +33,7 @@ CC =			gcc
 .c.o:
 				${CC} ${CFLAGS} ${DB} -c $< -o ${<:.c=.o}
 all:			${OBJS}
-				${CC} ${CFLAGS} ${OBJS} ${DB} ${OPT} ${NAME}
+				${CC} ${CFLAGS} ${OBJS} ${OPT} ${NAME}
 debug:			${OBJS}
 				${CC} ${CFLAGS} ${OBJS} ${DB} ${OPT} ${NAME}
 clean:
