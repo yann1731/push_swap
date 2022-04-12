@@ -9,7 +9,6 @@
 /*   Updated: 2022/03/09 14:05:26 by yst-laur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft/libft.h"
 #include "push_swap.h"
 
 void	binshiftup(char **binstack, int stacksize)

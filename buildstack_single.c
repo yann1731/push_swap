@@ -9,7 +9,6 @@
 /*   Updated: 2022/03/09 14:06:25 by yst-laur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft/libft.h"
 #include "push_swap.h"
 
 int	*buildstack_single(char **argv, int *stack, int argc)

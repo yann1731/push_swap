@@ -9,7 +9,6 @@
 /*   Updated: 2022/03/09 14:25:04 by yst-laur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft/libft.h"
 #include "push_swap.h"
 
 void	sorting(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)

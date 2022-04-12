@@ -9,7 +9,6 @@
 /*   Updated: 2022/03/09 14:17:10 by yst-laur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft/libft.h"
 #include "push_swap.h"
 
 int	intcheck(char **str)
@@ -25,8 +24,10 @@ int	intcheck(char **str)
 		{
 			if (str[i][j] < '0' || str[i][j] > '9')
 			{
-				if (str[i][j] != '-' && (str[i][j + 1] < '0'
-					|| str[i][j + 1] > '9'))
+				if (str[i][j] != '-')
+					return (0);
+				if (str[i][j] == '-' && (str[i][j + 1] < '0' ||
+						str[i][j + 1] > '9'))
 					return (0);
 			}
 		}

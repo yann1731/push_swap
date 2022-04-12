@@ -9,7 +9,6 @@
 /*   Updated: 2022/03/09 14:14:47 by yst-laur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft/libft.h"
 #include "push_swap.h"
 
 void	ft_strcpy(char *dst, const char *src)

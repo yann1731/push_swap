@@ -9,7 +9,6 @@
 /*   Updated: 2022/03/09 14:22:46 by yst-laur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft/libft.h"
 #include "push_swap.h"
 
 void	rrb(int *stack_b, int stack_b_size)

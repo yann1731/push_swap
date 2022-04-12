@@ -9,7 +9,6 @@
 /*   Updated: 2022/03/09 14:06:38 by yst-laur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft/libft.h"
 #include "push_swap.h"
 
 int	checkdupe(int *stack, int argc)

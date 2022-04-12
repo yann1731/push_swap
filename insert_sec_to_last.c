@@ -9,7 +9,6 @@
 /*   Updated: 2022/03/09 14:16:38 by yst-laur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft/libft.h"
 #include "push_swap.h"
 
 void	insert_sec_to_last(int *stack_a, int *stack_b,
@@ -23,7 +22,7 @@ void	insert_sec_to_last(int *stack_a, int *stack_b,
 	if (*stack_b_size == 2)
 		tempstack[3] = stack_b[1];
 	bubble_sort(tempstack, 5);
-	if (stack_a[*(stack_a_size) - 1] == tempstack[4])
+	if (stack_a[*stack_a_size - 1] == tempstack[4])
 	{
 		rra(stack_a, *stack_a_size);
 		pa(stack_a, stack_b, stack_a_size, stack_b_size);

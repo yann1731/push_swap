@@ -9,7 +9,6 @@
 /*   Updated: 2022/03/09 14:24:13 by yst-laur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft/libft.h"
 #include "push_swap.h"
 
 void	small_sort_five(int *stack_a, int *stack_b,
@@ -25,18 +24,19 @@ void	small_sort_five(int *stack_a, int *stack_b,
 	small_sort(stack_a, stack_a_size);
 	while (is_sorted(stack_a, stack_a_size) == 0 || stack_b_size != 0)
 	{
-		if (stack_b[0] == tempstack[0])
+		if (stack_b[0] == tempstack[0] && stack_b_size > 0)
 			pa(stack_a, stack_b, &stack_a_size, &stack_b_size);
-		if (stack_b[0] == tempstack[1])
+		if (stack_b[0] == tempstack[1] && stack_b_size > 0)
 			insert_second(stack_a, stack_b,
 				&stack_a_size, &stack_b_size);
-		if (stack_b[0] == tempstack[2])
+		if (stack_b[0] == tempstack[2] && stack_b_size > 0)
 			insert_mid(stack_a, stack_b,
 				&stack_a_size, &stack_b_size);
-		if (stack_b[0] == tempstack[3])
+		if (stack_b[0] == tempstack[3] && stack_b_size > 0)
 			insert_sec_to_last(stack_a, stack_b,
 				&stack_a_size, &stack_b_size);
-		if (stack_b[0] == tempstack[4])
+		if (stack_b[0] == tempstack[4] && stack_b_size > 0)
 			insert_max(stack_a, stack_b, &stack_a_size, &stack_b_size);
 	}
+	free(tempstack);
 }

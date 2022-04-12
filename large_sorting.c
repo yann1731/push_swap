@@ -9,7 +9,6 @@
 /*   Updated: 2022/03/09 14:18:57 by yst-laur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft/libft.h"
 #include "push_swap.h"
 
 void	large_sorting(char **binstack_a, char **binstack_b, int bit)

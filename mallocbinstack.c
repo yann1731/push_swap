@@ -9,7 +9,6 @@
 /*   Updated: 2022/03/09 14:19:29 by yst-laur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft/libft.h"
 #include "push_swap.h"
 
 char	**mallocbinstack(int stack_a_size)

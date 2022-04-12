@@ -13,6 +13,8 @@
 # define PUSH_SWAP_H
 
 # include <stdlib.h>
+# include <stdio.h>
+# include "libft/libft.h"
 
 int		intcheck(char **str);
 int		*buildstack(char *argv[], int *stack, int argc);
@@ -82,5 +84,7 @@ void	rabin(char **stack_a);
 void	small_sort_four(int *stack_a, int *stack_b,
 			int stack_a_size, int stack_b_size);
 void	freeargv(char **argv);
+int		intchecksingle(char **str);
+void	errorhandlingintsingle(char *argv[]);
 
 #endif

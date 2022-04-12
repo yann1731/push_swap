@@ -9,7 +9,6 @@
 /*   Updated: 2022/03/09 14:21:07 by yst-laur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft/libft.h"
 #include "push_swap.h"
 
 void	push_swap(int *stack_a, int *stack_b, int argc)
@@ -19,5 +18,7 @@ void	push_swap(int *stack_a, int *stack_b, int argc)
 
 	stack_a_size = argc - 1;
 	stack_b_size = 0;
+	if (is_sorted(stack_a, stack_a_size) == 1)
+		return ;
 	sorting(stack_a, stack_b, stack_a_size, stack_b_size);
 }
