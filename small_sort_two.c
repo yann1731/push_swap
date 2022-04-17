@@ -11,9 +11,9 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	small_sort_two(int *stack_a, int stack_a_size)
+void	small_sort_two(t_stack stack)
 {
-	if (stack_a_size == 2)
-		if (stack_a[0] > stack_a[1])
-			sa(stack_a, stack_a_size);
+	if (*stack.stackasize == 2)
+		if (stack.stacka[0] > stack.stacka[1])
+			sa(stack);
 }

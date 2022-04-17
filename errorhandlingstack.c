@@ -11,12 +11,12 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	errorhandlingstack(int *stack_a, int *stack_b)
+void	errorhandlingstack(t_stack stack)
 {
-	if (stack_a == NULL || stack_b == NULL)
+	if (stack.stacka == NULL || stack.stackb == NULL)
 	{
-		free(stack_a);
-		free(stack_b);
+		free(stack.stacka);
+		free(stack.stackb);
 		write(2, "Error\n", 6);
 		exit(1);
 	}

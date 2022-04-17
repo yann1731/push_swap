@@ -11,12 +11,12 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	rrb(int *stack_b, int stack_b_size)
+void	rrb(t_stack stack)
 {
 	int	temp;
 
-	temp = *(stack_b + stack_b_size);
-	shiftstackdown(stack_b, stack_b_size);
-	*(stack_b) = temp;
+	temp = *(stack.stackb + *stack.stackbsize);
+	shiftstackdown(stack.stackb, *stack.stackbsize);
+	*(stack.stackb) = temp;
 	write(1, "rrb\n", 4);
 }

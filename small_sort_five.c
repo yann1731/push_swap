@@ -11,32 +11,28 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	small_sort_five(int *stack_a, int *stack_b,
-		int stack_a_size, int stack_b_size)
+void	small_sort_five(t_stack stack)
 {
 	int	*tempstack;
 
-	tempstack = malloc(stack_a_size * sizeof(int));
-	stack_copy(stack_a, tempstack, stack_a_size);
-	bubble_sort(tempstack, stack_a_size);
-	pb(stack_a, stack_b, &stack_a_size, &stack_b_size);
-	pb(stack_a, stack_b, &stack_a_size, &stack_b_size);
-	small_sort(stack_a, stack_a_size);
-	while (is_sorted(stack_a, stack_a_size) == 0 || stack_b_size != 0)
+	tempstack = malloc(*stack.stackasize * sizeof(int));
+	stack_copy(stack.stacka, tempstack, *stack.stackasize);
+	bubble_sort(tempstack, *stack.stackasize);
+	pb(stack);
+	pb(stack);
+	small_sort(stack);
+	while (is_sorted(stack.stacka, *stack.stackasize) == 0 || *stack.stackbsize != 0)
 	{
-		if (stack_b[0] == tempstack[0] && stack_b_size > 0)
-			pa(stack_a, stack_b, &stack_a_size, &stack_b_size);
-		if (stack_b[0] == tempstack[1] && stack_b_size > 0)
-			insert_second(stack_a, stack_b,
-				&stack_a_size, &stack_b_size);
-		if (stack_b[0] == tempstack[2] && stack_b_size > 0)
-			insert_mid(stack_a, stack_b,
-				&stack_a_size, &stack_b_size);
-		if (stack_b[0] == tempstack[3] && stack_b_size > 0)
-			insert_sec_to_last(stack_a, stack_b,
-				&stack_a_size, &stack_b_size);
-		if (stack_b[0] == tempstack[4] && stack_b_size > 0)
-			insert_max(stack_a, stack_b, &stack_a_size, &stack_b_size);
+		if (stack.stackb[0] == tempstack[0] && *stack.stackbsize > 0)
+			pa(stack);
+		if (stack.stackb[0] == tempstack[1] && *stack.stackbsize > 0)
+			insert_second(stack);
+		if (stack.stackb[0] == tempstack[2] && *stack.stackbsize > 0)
+			insert_mid(stack);
+		if (stack.stackb[0] == tempstack[3] && *stack.stackbsize > 0)
+			insert_sec_to_last(stack);
+		if (stack.stackb[0] == tempstack[4] && *stack.stackbsize > 0)
+			insert_max(stack);
 	}
 	free(tempstack);
 }

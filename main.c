@@ -13,28 +13,27 @@
 
 int	main(int argc, char *argv[])
 {
-	int		*stack_a;
-	int		*stack_b;
+	t_stack	stack;
 
 	if (argc == 1)
 		exit(0);
 	if (argc > 2)
 	{
-		stack_a = malloc((argc - 1) * sizeof(int));
-		stack_a = buildstack(argv, stack_a, argc);
+		stack.stacka = malloc((argc - 1) * sizeof(int));
+		stack.stacka = buildstack(argv, stack.stacka, argc);
 		errorhandlingint(argv);
 	}
 	if (argc == 2)
 	{
 		argv = handle_single_string(argv, &argc);
-		stack_a = malloc((argc - 1) * sizeof(int));
-		stack_a = buildstack_single(argv, stack_a, argc);
+		stack.stacka = malloc((argc - 1) * sizeof(int));
+		stack.stacka = buildstack_single(argv, stack.stacka, argc);
 		freeargv(argv);
 	}
-	stack_b = malloc((argc - 1) * sizeof(int));
-	errorhandlingstack(stack_a, stack_b);
-	push_swap(stack_a, stack_b, argc);
-	free(stack_a);
-	free(stack_b);
+	stack.stackb = malloc((argc - 1) * sizeof(int));
+	errorhandlingstack(stack);
+	push_swap(stack, argc);
+	free(stack.stacka);
+	free(stack.stackb);
 	exit(0);
 }

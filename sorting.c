@@ -11,19 +11,19 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	sorting(int *stack_a, int *stack_b, int stack_a_size, int stack_b_size)
+void	sorting(t_stack stack)
 {
 	int	maxwidth;
 
-	maxwidth = maxbinwidth(stack_a_size);
-	if (stack_a_size == 2)
-		small_sort_two(stack_a, stack_a_size);
-	if (stack_a_size == 3)
-		small_sort(stack_a, stack_a_size);
-	if (stack_a_size == 4)
-		small_sort_four(stack_a, stack_b, stack_a_size, stack_b_size);
-	if (stack_a_size == 5)
-		small_sort_five(stack_a, stack_b, stack_a_size, stack_b_size);
-	if (stack_a_size > 5)
-		large_sort(stack_a, stack_a_size, maxwidth);
+	maxwidth = maxbinwidth(*stack.stackasize);
+	if (*stack.stackasize == 2)
+		small_sort_two(stack);
+	if (*stack.stackasize == 3)
+		small_sort(stack);
+	if (*stack.stackasize == 4)
+		small_sort_four(stack);
+	if (*stack.stackasize == 5)
+		small_sort_five(stack);
+	if (*stack.stackasize > 5)
+		large_sort(stack.stacka, *stack.stackasize, maxwidth);
 }

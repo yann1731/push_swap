@@ -11,14 +11,14 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	sa(int *stack_a, int stack_a_size)
+void	sa(t_stack stack)
 {
 	int	tmpvalue;
 
-	if (stack_a_size < 2)
+	if (*stack.stackasize < 2)
 		return ;
-	tmpvalue = stack_a[0];
-	*(stack_a) = *(stack_a + 1);
-	*(stack_a + 1) = tmpvalue;
+	tmpvalue = stack.stacka[0];
+	*(stack.stacka) = *(stack.stacka + 1);
+	*(stack.stacka + 1) = tmpvalue;
 	write(1, "sa\n", 3);
 }

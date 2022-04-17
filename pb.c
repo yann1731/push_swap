@@ -11,15 +11,15 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	pb(int *stack_a, int *stack_b, int *stack_a_size, int *stack_b_size)
+void	pb(t_stack stack)
 {
-	if (*stack_a_size != 0)
+	if (*stack.stackasize != 0)
 	{
-		shiftstackdown(stack_b, *stack_b_size);
-		*stack_b = *stack_a;
-		shiftstackup(stack_a, *stack_a_size);
-		*stack_b_size += 1;
-		*stack_a_size -= 1;
+		shiftstackdown(stack.stackb, *stack.stackbsize);
+		*stack.stackb = *stack.stacka;
+		shiftstackup(stack.stacka, *stack.stackasize);
+		*stack.stackbsize += 1;
+		*stack.stackasize -= 1;
 	}
 	write(1, "pb\n", 3);
 }

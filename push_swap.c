@@ -11,14 +11,15 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	push_swap(int *stack_a, int *stack_b, int argc)
+void	push_swap(t_stack stack, int argc)
 {
-	int	stack_a_size;
-	int	stack_b_size;
-
-	stack_a_size = argc - 1;
-	stack_b_size = 0;
-	if (is_sorted(stack_a, stack_a_size) == 1)
+	int stack_a;
+	int stack_b;
+	stack_a = argc - 1;
+	stack_b = 0;
+	stack.stackasize = &stack_a;
+	stack.stackbsize = &stack_b;
+	if (is_sorted(stack.stacka, *stack.stackasize) == 1)
 		return ;
-	sorting(stack_a, stack_b, stack_a_size, stack_b_size);
+	sorting(stack);
 }
