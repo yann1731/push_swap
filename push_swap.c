@@ -13,8 +13,9 @@
 
 void	push_swap(t_stack stack, int argc)
 {
-	int stack_a;
-	int stack_b;
+	int	stack_a;
+	int	stack_b;
+
 	stack_a = argc - 1;
 	stack_b = 0;
 	stack.stackasize = &stack_a;
