@@ -21,7 +21,8 @@ void	small_sort_five(t_stack stack)
 	pb(stack);
 	pb(stack);
 	small_sort(stack);
-	while (is_sorted(stack.stacka, *stack.stackasize) == 0 || *stack.stackbsize != 0)
+	while (is_sorted(stack.stacka, *stack.stackasize)
+		== 0 || *stack.stackbsize != 0)
 	{
 		if (stack.stackb[0] == tempstack[0] && *stack.stackbsize > 0)
 			pa(stack);
