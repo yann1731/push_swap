@@ -22,7 +22,7 @@ typedef struct s_stack
 	int	*stackb;
 	int	*stackasize;
 	int	*stackbsize;
-} t_stack;
+}	t_stack;
 
 int		intcheck(char **str);
 int		*buildstack(char *argv[], int *stack, int argc);
