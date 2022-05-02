@@ -23,7 +23,8 @@ void	small_sort_four(t_stack stack)
 		ra(stack);
 	}
 	if ((stack.stackb[0] > stack.stacka[0] && stack.stackb[0] < stack.stacka[1])
-		|| (stack.stackb[0] > stack.stacka[0] && stack.stackb[0] < stack.stacka[1]))
+		|| (stack.stackb[0] > stack.stacka[0]
+			&& stack.stackb[0] < stack.stacka[1]))
 	{
 		pa(stack);
 		sa(stack);
